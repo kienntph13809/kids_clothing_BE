@@ -2,9 +2,9 @@ package com.kids_clothing.service.service;
 
 import com.kids_clothing.common.EnumRefund;
 import com.kids_clothing.entity.Bill;
-import com.kids_clothing.request.dto.BillDto;
-import com.kids_clothing.request.dto.ShipingRequest;
-import com.kids_clothing.request.dto.UpdateBillCutomer;
+import com.kids_clothing.model.request.BillDto;
+import com.kids_clothing.model.request.ShipingRequest;
+import com.kids_clothing.model.request.UpdateBillCutomer;
 import com.kids_clothing.shiping.BillShiping;
 
 import javax.mail.MessagingException;

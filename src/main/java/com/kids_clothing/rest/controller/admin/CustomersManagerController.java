@@ -2,8 +2,8 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Customer;
-import com.kids_clothing.request.dto.CustomerDto;
-import com.kids_clothing.response.dto.Res;
+import com.kids_clothing.model.request.CustomerDto;
+import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.AccountService;
 import com.kids_clothing.service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;

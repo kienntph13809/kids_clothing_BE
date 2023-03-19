@@ -2,8 +2,9 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kids_clothing.entity.Typesize;
-import com.kids_clothing.request.dto.TypeSizeRequest;
-import com.kids_clothing.response.dto.Res;
+
+import com.kids_clothing.model.request.TypeSizeRequest;
+import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.TypeSizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

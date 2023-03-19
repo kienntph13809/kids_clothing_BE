@@ -7,10 +7,11 @@ import com.kids_clothing.common.Message;
 import com.kids_clothing.controllers.BaseController;
 import com.kids_clothing.dao.*;
 import com.kids_clothing.entity.*;
-import com.kids_clothing.request.dto.BillDto;
-import com.kids_clothing.request.dto.QuantityRequest;
-import com.kids_clothing.request.dto.ShipingRequest;
-import com.kids_clothing.request.dto.UpdateBillCutomer;
+
+import com.kids_clothing.model.request.BillDto;
+import com.kids_clothing.model.request.QuantityRequest;
+import com.kids_clothing.model.request.ShipingRequest;
+import com.kids_clothing.model.request.UpdateBillCutomer;
 import com.kids_clothing.service.service.BillService;
 import com.kids_clothing.service.service.CustomerService;
 import com.kids_clothing.service.service.OrderDetailService;

@@ -1,7 +1,7 @@
 package com.kids_clothing.controllers;
 
 import com.kids_clothing.entity.Account;
-import com.kids_clothing.response.dto.Res;
+import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

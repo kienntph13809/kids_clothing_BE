@@ -1,6 +1,7 @@
 package com.kids_clothing.config;
 
-import com.kids_clothing.response.dto.Response;
+
+import com.kids_clothing.model.response.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.ConversionNotSupportedException;

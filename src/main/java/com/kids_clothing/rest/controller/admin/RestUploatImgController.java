@@ -2,9 +2,10 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.kids_clothing.entity.Image;
 import com.kids_clothing.entity.Product;
-import com.kids_clothing.request.dto.FileInfo;
-import com.kids_clothing.response.dto.Res;
-import com.kids_clothing.response.dto.ResponeMess;
+
+import com.kids_clothing.model.request.FileInfo;
+import com.kids_clothing.model.response.Res;
+import com.kids_clothing.model.response.ResponeMess;
 import com.kids_clothing.service.service.FilesSerivce;
 import com.kids_clothing.service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

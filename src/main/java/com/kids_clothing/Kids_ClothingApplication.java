@@ -2,6 +2,8 @@ package com.kids_clothing;
 
 
 
+import com.kids_clothing.seeder.BathSeeder;
+import com.kids_clothing.service.service.FilesSerivce;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,15 +14,15 @@ import javax.annotation.Resource;
 public class Kids_ClothingApplication implements CommandLineRunner {
 
     @Resource
-   // FilesSerivce storageService;
+    FilesSerivce storageService;
 
     public static void main(String[] args) {
         SpringApplication.run(Kids_ClothingApplication.class, args);
-      //  new BathSeeder().seed();
+       new BathSeeder().seed();
     }
 
     @Override
     public void run(String... arg) throws Exception {
-       // storageService.init();
+        storageService.init();
     }
 }

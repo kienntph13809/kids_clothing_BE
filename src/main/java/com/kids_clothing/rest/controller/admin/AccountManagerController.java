@@ -7,7 +7,7 @@ import com.kids_clothing.dao.RoleDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Authority;
 import com.kids_clothing.entity.Role;
-import com.kids_clothing.response.dto.Res;
+import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.AccountService;
 import com.kids_clothing.service.service.AuthorityService;
 import org.springframework.beans.BeanUtils;

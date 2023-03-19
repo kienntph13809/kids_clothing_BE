@@ -2,8 +2,8 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kids_clothing.entity.Voucher;
-import com.kids_clothing.request.dto.VoucherRequest;
-import com.kids_clothing.response.dto.Res;
+import com.kids_clothing.model.request.VoucherRequest;
+import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.VoucherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

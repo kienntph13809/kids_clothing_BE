@@ -1,7 +1,7 @@
 package com.kids_clothing.controllers;
 
 import com.kids_clothing.dao.CustomerDao;
-import com.kids_clothing.response.dto.Res;
+import com.kids_clothing.model.response.Res;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

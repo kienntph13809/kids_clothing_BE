@@ -1,0 +1,9 @@
+package com.kids_clothing.service.service;
+
+import com.kids_clothing.entity.Role;
+
+import java.util.Optional;
+
+public interface RoleService {
+    Optional<Role> findByName(String name);
+}

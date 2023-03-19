@@ -1,8 +1,9 @@
 package com.kids_clothing.rest.controller.admin;
 
 import com.kids_clothing.common.EnumStatus;
-import com.kids_clothing.request.dto.QtyByDayRequest;
-import com.kids_clothing.response.dto.Res;
+
+import com.kids_clothing.model.request.QtyByDayRequest;
+import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.impl.StatisServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Description;

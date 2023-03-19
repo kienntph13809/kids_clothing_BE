@@ -2,7 +2,7 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kids_clothing.entity.Product;
-import com.kids_clothing.response.dto.Res;
+import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.CategoryDetailService;
 import com.kids_clothing.service.service.ImageService;
 import com.kids_clothing.service.service.ProductService;
