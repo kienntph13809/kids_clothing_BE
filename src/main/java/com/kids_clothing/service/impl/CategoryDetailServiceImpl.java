@@ -1,16 +1,14 @@
 package com.kids_clothing.service.impl;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.kids_clothing.dao.CategoryDetailDao;
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.service.service.CategoryDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryDetailServiceImpl implements CategoryDetailService {

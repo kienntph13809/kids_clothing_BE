@@ -1,8 +1,8 @@
 package com.kids_clothing.service.service;
 
-import java.util.List;
-
 import com.kids_clothing.entity.Authority;
+
+import java.util.List;
 
 public interface AuthorityService {
 	List<Authority> findAllByIsDeleteFalse();

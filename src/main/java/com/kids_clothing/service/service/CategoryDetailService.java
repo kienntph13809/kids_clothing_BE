@@ -1,9 +1,9 @@
 package com.kids_clothing.service.service;
 
+import com.kids_clothing.entity.Categorydetail;
+
 import java.util.List;
 import java.util.Optional;
-
-import com.kids_clothing.entity.Categorydetail;
 
 public interface CategoryDetailService {
     List<Categorydetail> findAll();
