@@ -1,8 +1,8 @@
 package com.kids_clothing.rest.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.dao.AccountDao;
-import com.kids_clothing.dao.CustomerDao;
+import com.kids_clothing.Repository.AccountDao;
+import com.kids_clothing.Repository.CustomerDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.model.request.ChangeAccountDto;

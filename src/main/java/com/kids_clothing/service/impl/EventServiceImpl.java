@@ -1,7 +1,7 @@
 package com.kids_clothing.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.dao.EventDao;
+import com.kids_clothing.Repository.EventDao;
 import com.kids_clothing.entity.Event;
 import com.kids_clothing.model.request.EventRequest;
 import com.kids_clothing.service.service.EventService;

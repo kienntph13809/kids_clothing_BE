@@ -1,6 +1,6 @@
 package com.kids_clothing.rest.controller.admin;
 
-import com.kids_clothing.dao.RoleDao;
+import com.kids_clothing.Repository.RoleDao;
 import com.kids_clothing.model.response.Res;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

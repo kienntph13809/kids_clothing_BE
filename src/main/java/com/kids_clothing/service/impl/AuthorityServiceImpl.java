@@ -1,6 +1,6 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.dao.AuthorityDao;
+import com.kids_clothing.Repository.AuthorityDao;
 import com.kids_clothing.entity.Authority;
 import com.kids_clothing.service.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;

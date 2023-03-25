@@ -1,6 +1,6 @@
 package com.kids_clothing.model.request;
 
-import com.kids_clothing.entity.Quantity;
+import com.kids_clothing.entity.ProductDetail;
 
 public class OrderDetailRequest {
 
@@ -14,7 +14,7 @@ public class OrderDetailRequest {
 
     private Double intomoney;
 
-    private Quantity quantity;
+    private ProductDetail productDetail;
 
 
 }

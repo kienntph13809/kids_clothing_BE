@@ -1,7 +1,7 @@
 package com.kids_clothing.service.impl;
 
 
-import com.kids_clothing.dao.ImageDao;
+import com.kids_clothing.Repository.ImageDao;
 import com.kids_clothing.entity.Image;
 import com.kids_clothing.service.service.FilesSerivce;
 import org.springframework.beans.factory.annotation.Autowired;

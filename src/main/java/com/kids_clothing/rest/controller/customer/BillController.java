@@ -2,8 +2,8 @@
 package com.kids_clothing.rest.controller.customer;
 
 import com.kids_clothing.controllers.BaseController;
-import com.kids_clothing.dao.AccountDao;
-import com.kids_clothing.dao.QuantityDao;
+import com.kids_clothing.Repository.AccountDao;
+import com.kids_clothing.Repository.QuantityDao;
 import com.kids_clothing.entity.Bill;
 
 import com.kids_clothing.model.request.BillDto;

@@ -1,8 +1,8 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.dao.QuantityDao;
+import com.kids_clothing.Repository.QuantityDao;
 import com.kids_clothing.entity.Product;
-import com.kids_clothing.entity.Quantity;
+import com.kids_clothing.entity.ProductDetail;
 import com.kids_clothing.model.request.CreateQuantityDto;
 import com.kids_clothing.service.service.QuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,58 +21,58 @@ public class QuantityServiceImpl implements QuantityService {
     QuantityDao quantityDao;
 
     @Override
-    public List<Quantity> findAll() {
+    public List<ProductDetail> findAll() {
         // TODO Auto-generated method stub
         return quantityDao.findAll();
     }
 
     @Override
-    public List<Quantity> findByProduct(Product product) {
+    public List<ProductDetail> findByProduct(Product product) {
         // TODO Auto-generated method stub
         return quantityDao.findByProductAndIsDeleteFalse(product);
     }
 
     @Override
-	public List<Quantity> findAllByIsDeleteFalse() {
+	public List<ProductDetail> findAllByIsDeleteFalse() {
 		// TODO Auto-generated method stub
 		return quantityDao.findAllByIsDeleteFalse();
 	}
     
     @Override
-    public List<Quantity> createQty(CreateQuantityDto createQuantity) {
-        List<Quantity> quantities = new ArrayList<>();
+    public List<ProductDetail> createQty(CreateQuantityDto createQuantity) {
+        List<ProductDetail> quantities = new ArrayList<>();
         createQuantity.getPropertyrequests().forEach(property -> {
-            Quantity quantity = new Quantity();
-            Optional<Quantity> qty = quantityDao.checkQty(createQuantity.getIdsize(), property.getIdproperty(), createQuantity.getIdpoduct());
+            ProductDetail productDetail = new ProductDetail();
+            Optional<ProductDetail> qty = quantityDao.checkQty(createQuantity.getIdsize(), property.getIdproperty(), createQuantity.getIdpoduct());
             if (qty.isPresent()) {
-                quantity = qty.get();
+                productDetail = qty.get();
             } else {
-                quantity.setIdProduct(createQuantity.getIdpoduct());
-                quantity.setIdsize(createQuantity.getIdsize());
-                quantity.setIdproperty(property.getIdproperty());
+                productDetail.setIdProduct(createQuantity.getIdpoduct());
+                productDetail.setIdsize(createQuantity.getIdsize());
+                productDetail.setIdproperty(property.getIdproperty());
             }
-            quantity.setIsDelete(false);
-            quantity.setQuantity(property.getQuantity());
+            productDetail.setIsDelete(false);
+            productDetail.setQuantity(property.getQuantity());
 
-            quantities.add(quantity);
+            quantities.add(productDetail);
 
         });
         return quantityDao.saveAll(quantities);
     }
 
     @Override
-    public Quantity deleteQty(Long idqty) {
-        Quantity quantity = quantityDao.findById(idqty).orElseThrow(() -> {
+    public ProductDetail deleteQty(Long idqty) {
+        ProductDetail productDetail = quantityDao.findById(idqty).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Không tìm thấy quantity");
         });
-        quantity.setIsDelete(true);
+        productDetail.setIsDelete(true);
 
-        return quantityDao.save(quantity);
+        return quantityDao.save(productDetail);
     }
 
     @Override
-    public Quantity quantityReady(Long idproduct, Long idsize, Long idproperty) {
-        Optional<Quantity> quantity = quantityDao.checkQty(idsize, idproperty, idproduct);
+    public ProductDetail quantityReady(Long idproduct, Long idsize, Long idproperty) {
+        Optional<ProductDetail> quantity = quantityDao.checkQty(idsize, idproperty, idproduct);
         return quantity.orElse(null);
     }
 

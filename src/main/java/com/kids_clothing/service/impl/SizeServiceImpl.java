@@ -1,7 +1,7 @@
 package com.kids_clothing.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.dao.SizeDao;
+import com.kids_clothing.Repository.SizeDao;
 import com.kids_clothing.entity.Size;
 import com.kids_clothing.entity.Typesize;
 import com.kids_clothing.model.request.SizeRequest;

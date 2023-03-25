@@ -31,5 +31,5 @@ public class Size implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "size")
-    private List<Quantity> quantities;
+    private List<ProductDetail> ProductDetails;
 }

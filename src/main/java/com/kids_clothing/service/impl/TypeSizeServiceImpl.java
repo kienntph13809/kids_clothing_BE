@@ -1,6 +1,6 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.dao.TyperSizeDao;
+import com.kids_clothing.Repository.TyperSizeDao;
 import com.kids_clothing.entity.Typesize;
 
 import com.kids_clothing.model.request.TypeSizeRequest;

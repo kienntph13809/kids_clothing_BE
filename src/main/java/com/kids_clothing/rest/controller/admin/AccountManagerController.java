@@ -1,9 +1,9 @@
 package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.dao.AccountDao;
-import com.kids_clothing.dao.AuthorityDao;
-import com.kids_clothing.dao.RoleDao;
+import com.kids_clothing.Repository.AccountDao;
+import com.kids_clothing.Repository.AuthorityDao;
+import com.kids_clothing.Repository.RoleDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Authority;
 import com.kids_clothing.entity.Role;

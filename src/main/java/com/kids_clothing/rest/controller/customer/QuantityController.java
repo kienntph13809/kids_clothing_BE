@@ -1,7 +1,7 @@
 package com.kids_clothing.rest.controller.customer;
 
 import com.kids_clothing.entity.Product;
-import com.kids_clothing.entity.Quantity;
+import com.kids_clothing.entity.ProductDetail;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.ProductService;
 import com.kids_clothing.service.service.QuantityService;
@@ -29,7 +29,7 @@ public class QuantityController {
 	@GetMapping("/findQuantityByProduct/{id}")
 	public ResponseEntity<?> findQuantityByProduct(@PathVariable("id") Long id){
 		Optional<Product> product = Optional.ofNullable(productService.findById(id));
-		List<Quantity> list = quantityService.findByProduct(product.get());
+		List<ProductDetail> list = quantityService.findByProduct(product.get());
 		return ResponseEntity.ok(new Res(list,"success",true));
 	}
 

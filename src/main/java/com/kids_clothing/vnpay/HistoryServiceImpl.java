@@ -1,6 +1,6 @@
 package com.kids_clothing.vnpay;
 
-import com.kids_clothing.dao.HistoryDao;
+import com.kids_clothing.Repository.HistoryDao;
 import com.kids_clothing.entity.History;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

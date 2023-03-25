@@ -1,6 +1,6 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.dao.PropertyDao;
+import com.kids_clothing.Repository.PropertyDao;
 import com.kids_clothing.entity.Property;
 import com.kids_clothing.service.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;

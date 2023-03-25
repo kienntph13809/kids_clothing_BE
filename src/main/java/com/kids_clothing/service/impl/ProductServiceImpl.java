@@ -1,6 +1,6 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.dao.ProductDao;
+import com.kids_clothing.Repository.ProductDao;
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.entity.Product;
 import com.kids_clothing.service.service.ProductService;

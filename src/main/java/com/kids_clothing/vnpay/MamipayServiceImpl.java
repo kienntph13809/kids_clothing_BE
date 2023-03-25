@@ -1,7 +1,7 @@
 package com.kids_clothing.vnpay;
 
-import com.kids_clothing.dao.CustomerDao;
-import com.kids_clothing.dao.MamiPayDao;
+import com.kids_clothing.Repository.CustomerDao;
+import com.kids_clothing.Repository.MamiPayDao;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.entity.Mamipay;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.kids_clothing.dao;
+package com.kids_clothing.Repository;
 
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.entity.Product;

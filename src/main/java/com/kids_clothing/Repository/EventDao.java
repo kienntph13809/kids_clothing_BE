@@ -1,4 +1,4 @@
-package com.kids_clothing.dao;
+package com.kids_clothing.Repository;
 
 import com.kids_clothing.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
