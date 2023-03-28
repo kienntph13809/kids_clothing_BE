@@ -11,8 +11,8 @@ public class VnpayConfig {
     public static String getIpAddress = "0:0:0:0:0:0:0:1";
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static String vnp_Returnurl = "http://localhost:8080/VnPayIPN";
-    public static String vnp_TmnCode = "NX9UGL9F";
-    public static String vnp_HashSecret = "GLFQNNQIXLEAKTJFAQOLMSNIIHBRNISG";
+    public static String vnp_TmnCode = "5RAG4C99";
+    public static String vnp_HashSecret = "OHFDJRXFBDJFPDOOQAKTVDMHCAIKDPLI";
 
     public static String hmacSHA512(final String key, final String data) {
         try {
@@ -56,7 +56,7 @@ public class VnpayConfig {
                 sb.append("&");
             }
         }
-        return hmacSHA512("GLFQNNQIXLEAKTJFAQOLMSNIIHBRNISG", sb.toString());
+        return hmacSHA512("OHFDJRXFBDJFPDOOQAKTVDMHCAIKDPLI", sb.toString());
     }
 
     public static String getRandomNumber(int len) {
