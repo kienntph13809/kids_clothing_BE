@@ -3,9 +3,9 @@ package com.kids_clothing.rest.controller.admin;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.dao.QuantityDao;
+import com.kids_clothing.repository.QuantityDao;
 import com.kids_clothing.entity.Product;
-import com.kids_clothing.entity.Quantity;
+import com.kids_clothing.entity.ProductDetail;
 import com.kids_clothing.model.request.CreateQuantityDto;
 import com.kids_clothing.model.request.QuantityDto;
 import com.kids_clothing.model.response.Res;
@@ -42,7 +42,7 @@ public class QuantityManagerController {
 	@PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> findQuantityByProduct(@PathVariable("id") Long id) {
 		Optional<Product> product = Optional.ofNullable(productService.findById(id));
-		List<Quantity> list = quantityService.findByProduct(product.get());
+		List<ProductDetail> list = quantityService.findByProduct(product.get());
 		return ResponseEntity.ok(new Res(list, "success", true));
 	}
 
@@ -50,12 +50,12 @@ public class QuantityManagerController {
 	@PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> saveAndFlush(@RequestParam("quantityDTO") String data,
 			@RequestParam("status") String status) throws JsonMappingException, JsonProcessingException {
-		Quantity obj = new Quantity();
+		ProductDetail obj = new ProductDetail();
 		ObjectMapper json = new ObjectMapper();
 		QuantityDto quantity = json.readValue(data, QuantityDto.class);
 		if (status == "CREATE") {
 			for (Product x : quantity.getProduct()) {
-				Quantity entity = quantityService.quantityReady(x.getId(), quantity.getSize().getId(),
+				ProductDetail entity = quantityService.quantityReady(x.getId(), quantity.getSize().getId(),
 						quantity.getProperty().getIdproperty());
 				if (entity == null) {
 					obj.setIdProduct(x.getId());
@@ -79,7 +79,7 @@ public class QuantityManagerController {
 			}
 		} else {
 			for (Product x : quantity.getProduct()) {
-				Quantity entity = quantityService.quantityReady(x.getId(), quantity.getSize().getId(),
+				ProductDetail entity = quantityService.quantityReady(x.getId(), quantity.getSize().getId(),
 						quantity.getProperty().getIdproperty());
 				if (entity == null) {
 					obj.setIdProduct(x.getId());

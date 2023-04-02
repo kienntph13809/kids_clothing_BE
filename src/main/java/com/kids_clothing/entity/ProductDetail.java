@@ -10,8 +10,8 @@ import java.util.List;
 @SuppressWarnings("serial")
 @Data
 @Entity
-@Table(name = "quantity")
-public class Quantity implements Serializable {
+@Table(name = "productdetail")
+public class ProductDetail implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +44,7 @@ public class Quantity implements Serializable {
     private Boolean isDelete = false;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "quantity")
+    @OneToMany(mappedBy = "productDetail")
     private List<Orderdetail> orderdetails;
 
 }

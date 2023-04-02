@@ -1,10 +1,10 @@
 package com.kids_clothing.seeder;
 
 import com.kids_clothing.common.ERole;
-import com.kids_clothing.dao.AccountDao;
-import com.kids_clothing.dao.AuthorityDao;
-import com.kids_clothing.dao.CustomerDao;
-import com.kids_clothing.dao.RoleDao;
+import com.kids_clothing.repository.AccountDao;
+import com.kids_clothing.repository.AuthorityDao;
+import com.kids_clothing.repository.CustomerDao;
+import com.kids_clothing.repository.RoleDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Authority;
 import com.kids_clothing.entity.Customer;

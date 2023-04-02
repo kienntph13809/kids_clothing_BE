@@ -39,11 +39,11 @@ public class Orderdetail implements Serializable {
     private Boolean isDelete = false;
 
     @ManyToOne
-    @JoinColumn(name = "idquantity", updatable = false, insertable = false)
-    private Quantity quantity;
+    @JoinColumn(name = "idproductDetail", updatable = false, insertable = false)
+    private ProductDetail productDetail;
 
-    @Column(name = "idquantity")
-    private Long idquantity;
+    @Column(name = "idproductDetail")
+    private Long idproductDetail;
 
     @JsonIgnore
     @ManyToOne

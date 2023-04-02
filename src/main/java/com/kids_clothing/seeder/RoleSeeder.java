@@ -1,7 +1,7 @@
 package com.kids_clothing.seeder;
 
 import com.kids_clothing.common.ERole;
-import com.kids_clothing.dao.RoleDao;
+import com.kids_clothing.repository.RoleDao;
 import com.kids_clothing.entity.Role;
 
 public class RoleSeeder implements Seeder {

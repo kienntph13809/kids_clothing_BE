@@ -1,7 +1,7 @@
 package com.kids_clothing.vnpay;
 
 import com.kids_clothing.controllers.BaseController;
-import com.kids_clothing.dao.CustomerDao;
+import com.kids_clothing.repository.CustomerDao;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.entity.History;
 import com.kids_clothing.entity.Mamipay;
