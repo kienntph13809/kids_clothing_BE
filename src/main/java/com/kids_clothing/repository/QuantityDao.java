@@ -1,4 +1,4 @@
-package com.kids_clothing.Repository;
+package com.kids_clothing.repository;
 
 import com.kids_clothing.entity.Product;
 import com.kids_clothing.entity.ProductDetail;

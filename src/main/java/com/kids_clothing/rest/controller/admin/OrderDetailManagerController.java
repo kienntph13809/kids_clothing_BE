@@ -1,6 +1,6 @@
 package com.kids_clothing.rest.controller.admin;
 
-import com.kids_clothing.Repository.OrderDetailDao;
+import com.kids_clothing.repository.OrderDetailDao;
 import com.kids_clothing.entity.Orderdetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

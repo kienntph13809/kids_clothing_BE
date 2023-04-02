@@ -1,6 +1,6 @@
 package com.kids_clothing.rest.controller.customer;
 
-import com.kids_clothing.Repository.OrderDetailDao;
+import com.kids_clothing.repository.OrderDetailDao;
 import com.kids_clothing.entity.Orderdetail;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.OrderDetailService;

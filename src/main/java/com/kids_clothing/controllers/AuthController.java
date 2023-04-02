@@ -1,10 +1,10 @@
 package com.kids_clothing.controllers;
 
 import com.kids_clothing.common.JwtUtils;
-import com.kids_clothing.Repository.AccountDao;
-import com.kids_clothing.Repository.AuthorityDao;
-import com.kids_clothing.Repository.CustomerDao;
-import com.kids_clothing.Repository.RoleDao;
+import com.kids_clothing.repository.AccountDao;
+import com.kids_clothing.repository.AuthorityDao;
+import com.kids_clothing.repository.CustomerDao;
+import com.kids_clothing.repository.RoleDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Authority;
 import com.kids_clothing.entity.Customer;

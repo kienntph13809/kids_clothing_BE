@@ -1,7 +1,7 @@
 package com.kids_clothing.seeder;
 
-import com.kids_clothing.Repository.SizeDao;
-import com.kids_clothing.Repository.TyperSizeDao;
+import com.kids_clothing.repository.SizeDao;
+import com.kids_clothing.repository.TyperSizeDao;
 import com.kids_clothing.entity.Size;
 import com.kids_clothing.entity.Typesize;
 

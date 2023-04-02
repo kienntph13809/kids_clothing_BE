@@ -1,4 +1,4 @@
-package com.kids_clothing.Exception;
+package com.kids_clothing.exception;
 
 import com.kids_clothing.model.response.ResponeMess;
 import org.springframework.http.HttpStatus;

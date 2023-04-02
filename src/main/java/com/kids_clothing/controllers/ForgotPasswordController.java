@@ -1,6 +1,6 @@
 package com.kids_clothing.controllers;
 
-import com.kids_clothing.Repository.AccountDao;
+import com.kids_clothing.repository.AccountDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.model.request.ForgotPasswordRequest;
 import com.kids_clothing.model.response.Res;

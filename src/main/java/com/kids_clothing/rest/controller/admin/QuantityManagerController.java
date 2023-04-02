@@ -3,7 +3,7 @@ package com.kids_clothing.rest.controller.admin;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.Repository.QuantityDao;
+import com.kids_clothing.repository.QuantityDao;
 import com.kids_clothing.entity.Product;
 import com.kids_clothing.entity.ProductDetail;
 import com.kids_clothing.model.request.CreateQuantityDto;
