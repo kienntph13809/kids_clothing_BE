@@ -62,13 +62,14 @@ public class VnpayController extends BaseController {
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
         vnp_Params.put("vnp_OrderInfo", vnp_OrderInfo);
         vnp_Params.put("vnp_OrderType", orderType);
-        paymenDto.setLanguage("vn");///////3
-        String locate = paymenDto.getLanguage();
-        if (locate != null && !locate.isEmpty()) {
-            vnp_Params.put("vnp_Locale", locate);
-        } else {
-            vnp_Params.put("vnp_Locale", "vn");
-        }
+//        paymenDto.setLanguage("vn");///////3
+//        String locate = paymenDto.getLanguage();
+//        if (locate != null && !locate.isEmpty()) {
+//            vnp_Params.put("vnp_Locale", locate);
+//        } else {
+//            vnp_Params.put("vnp_Locale", "vn");
+//        }
+        vnp_Params.put("vnp_Locale", "vn");
         vnp_Params.put("vnp_ReturnUrl", VnpayConfig.vnp_Returnurl);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
