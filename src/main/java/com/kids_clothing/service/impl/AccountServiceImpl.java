@@ -1,6 +1,6 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.dao.AccountDao;
+import com.kids_clothing.repository.AccountDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.model.request.AccountDto;

@@ -24,6 +24,6 @@ public class Property implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "property")
-    private List<Quantity> quantities;
+    private List<ProductDetail> ProductDetails;
 
 }

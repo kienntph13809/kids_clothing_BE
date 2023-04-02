@@ -1,4 +1,4 @@
-package com.kids_clothing.dao;
+package com.kids_clothing.repository;
 
 import com.kids_clothing.common.EnumStatus;
 import com.kids_clothing.entity.Orderdetail;
@@ -18,14 +18,14 @@ public interface OrderDetailDao extends JpaRepository<Orderdetail, Long> {
             " o.bill.isDelete = false and o.idbill = ?1")
     List<Orderdetail> getListOrderDetail(String id);
 
-    @Query("select o.quantity.product.name as name, sum(o.quantitydetail) as qty,sum(o.intomoney) as intomoney " +
+    @Query("select o.productDetail.product.name as name, sum(o.quantitydetail) as qty,sum(o.intomoney) as intomoney " +
             " from Orderdetail o " +
             " where o.createAt >= ?1 and o.createAt <= ?2 " +
             " group by name " +
             " order by qty desc ")
     List<Object[]> getSumQtyProduct(Date start, Date end);
 
-    @Query("select o.quantity.product.name as name, sum(o.quantitydetail) as qty,sum(o.intomoney) as intomoney " +
+    @Query("select o.productDetail.product.name as name, sum(o.quantitydetail) as qty,sum(o.intomoney) as intomoney " +
             " from Orderdetail o " +
             " where o.createAt >= ?1 and o.createAt <= ?2 " +
             " and o.bill.status = ?3" +

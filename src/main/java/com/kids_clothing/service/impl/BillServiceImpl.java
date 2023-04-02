@@ -5,7 +5,7 @@ import com.kids_clothing.common.EnumRefund;
 import com.kids_clothing.common.EnumStatus;
 import com.kids_clothing.common.Message;
 import com.kids_clothing.controllers.BaseController;
-import com.kids_clothing.dao.*;
+import com.kids_clothing.repository.*;
 import com.kids_clothing.entity.*;
 
 import com.kids_clothing.model.request.BillDto;
@@ -113,13 +113,13 @@ public class BillServiceImpl extends BaseController implements BillService {
 
            List<QuantityRequest> quantityRequests = billDto.getList_quantity();
            for (QuantityRequest qty : quantityRequests) {
-               Quantity quantity = quantityDao.findById(qty.getId_quantity()).
+               ProductDetail productDetail = quantityDao.findById(qty.getId_quantity()).
                        orElseThrow(() -> new RuntimeException("Lỗi thêm sản phẩm"));
-               Product product = objectMapper.convertValue(quantity.getProduct(), Product.class);
+               Product product = objectMapper.convertValue(productDetail.getProduct(), Product.class);
                StringBuilder message = new StringBuilder();
-               if (quantity.getQuantity() < qty.getBill_quantity()) {
-                   String er = "Sản phẩm: " + quantity.getProduct().getName()
-                           + " Size: " + quantity.getSize().getName() + "-" + quantity.getProperty().getName()
+               if (productDetail.getQuantity() < qty.getBill_quantity()) {
+                   String er = "Sản phẩm: " + productDetail.getProduct().getName()
+                           + " Size: " + productDetail.getSize().getName() + "-" + productDetail.getProperty().getName()
                            + " đã hết hàng.";
                    message.append(er).append("\n");
                }
@@ -127,7 +127,7 @@ public class BillServiceImpl extends BaseController implements BillService {
                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message.toString());
                }
                Orderdetail orderdetail = new Orderdetail();
-               orderdetail.setIdquantity(quantity.getId());
+               orderdetail.setIdproductDetail(productDetail.getId());
                orderdetail.setQuantitydetail(qty.getBill_quantity());
                orderdetail.setPrice(product.getPrice());
                orderdetail.setDownprice(product.getDiscount() != null ? product.getPrice() * (product.getDiscount() / 100) : 0);
@@ -274,13 +274,13 @@ public class BillServiceImpl extends BaseController implements BillService {
         }
         if (bill.getStatus() == EnumStatus.DA_XAC_NHAN_VA_DONG_GOI) {
             //hoàn số lượng về kho
-            List<Quantity> quantities = new ArrayList<>();
+            List<ProductDetail> quantities = new ArrayList<>();
             List<Orderdetail> orderdetails = bill.getOrderdetails();
             for (Orderdetail orderdetail : orderdetails) {
-                Quantity quantity = orderdetail.getQuantity();
+                ProductDetail productDetail = orderdetail.getProductDetail();
 
-                quantity.setQuantity(quantity.getQuantity() + orderdetail.getQuantitydetail());
-                quantities.add(quantity);
+                productDetail.setQuantity(productDetail.getQuantity() + orderdetail.getQuantitydetail());
+                quantities.add(productDetail);
             }
             quantityDao.saveAll(quantities);
         }
@@ -310,19 +310,19 @@ public class BillServiceImpl extends BaseController implements BillService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Không thể xác nhận đơn");
         }
         //hoàn số lượng về kho
-        List<Quantity> quantities = new ArrayList<>();
+        List<ProductDetail> quantities = new ArrayList<>();
         StringBuilder message = new StringBuilder();
         List<Orderdetail> orderdetails = bill.getOrderdetails();
         for (Orderdetail orderdetail : orderdetails) {
-            Quantity quantity = orderdetail.getQuantity();
-            if (quantity.getQuantity() < orderdetail.getQuantitydetail()) {
-                String er = "Sản phẩm: " + quantity.getProduct().getName()
-                        + " Size: " + quantity.getSize().getName() + "-" + quantity.getProperty().getName()
+            ProductDetail productDetail = orderdetail.getProductDetail();
+            if (productDetail.getQuantity() < orderdetail.getQuantitydetail()) {
+                String er = "Sản phẩm: " + productDetail.getProduct().getName()
+                        + " Size: " + productDetail.getSize().getName() + "-" + productDetail.getProperty().getName()
                         + " đã hết hàng.";
                 message.append(er).append("\n");
             }
-            quantity.setQuantity(quantity.getQuantity() - orderdetail.getQuantitydetail());
-            quantities.add(quantity);
+            productDetail.setQuantity(productDetail.getQuantity() - orderdetail.getQuantitydetail());
+            quantities.add(productDetail);
         }
         if (message.toString().length() > 0) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message.toString());
@@ -422,13 +422,13 @@ public class BillServiceImpl extends BaseController implements BillService {
             }
         }
         //hoan sl ve kho
-        List<Quantity> quantities = new ArrayList<>();
+        List<ProductDetail> quantities = new ArrayList<>();
         List<Orderdetail> orderdetails = bill.getOrderdetails();
         for (Orderdetail orderdetail : orderdetails) {
-            Quantity quantity = orderdetail.getQuantity();
+            ProductDetail productDetail = orderdetail.getProductDetail();
 
-            quantity.setQuantity(quantity.getQuantity() + orderdetail.getQuantitydetail());
-            quantities.add(quantity);
+            productDetail.setQuantity(productDetail.getQuantity() + orderdetail.getQuantitydetail());
+            quantities.add(productDetail);
         }
         quantityDao.saveAll(quantities);
         //hoàn tiền về ví nếu thanh toán qua ví

@@ -1,6 +1,6 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.dao.CategoryDetailDao;
+import com.kids_clothing.repository.CategoryDetailDao;
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.service.service.CategoryDetailService;
 import org.springframework.beans.factory.annotation.Autowired;

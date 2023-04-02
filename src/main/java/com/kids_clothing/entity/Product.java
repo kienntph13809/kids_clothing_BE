@@ -50,6 +50,6 @@ public class Product implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
-    private List<Quantity> quantities;
+    private List<ProductDetail> quantities;
 
 }

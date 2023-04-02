@@ -47,6 +47,8 @@ public class Bill implements Serializable {
 
     private Double total;//thanh toán
 
+     private String sale_point;//điểm bán hàng
+
     @Length(max = 1000)
     private String address;//địa chỉ
 
@@ -87,7 +89,7 @@ public class Bill implements Serializable {
 //	private Voucher voucher;
 
     @OneToMany(mappedBy = "product")
-    private List<Quantity> quantities;
+    private List<ProductDetail> quantities;
 
     @JsonIgnore
     @OneToMany(mappedBy = "bill")
