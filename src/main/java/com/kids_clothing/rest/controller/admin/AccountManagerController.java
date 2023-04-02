@@ -7,6 +7,8 @@ import com.kids_clothing.dao.RoleDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Authority;
 import com.kids_clothing.entity.Role;
+import com.kids_clothing.model.request.AccountDto;
+import com.kids_clothing.model.request.CustomerDto;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.AccountService;
 import com.kids_clothing.service.service.AuthorityService;
@@ -50,7 +52,7 @@ public class AccountManagerController {
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(new Res(roleDAO.findAll(), "Save Success", true));
     }
-    
+
     @GetMapping(value = "/{id}")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getOne(@PathVariable("id") long id) {
@@ -129,4 +131,11 @@ public class AccountManagerController {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+
+    @PostMapping(value = "/findByPhone")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> getOne(@RequestBody CustomerDto customer) {
+        return ResponseEntity.ok(new Res(accountService.findByPhone(customer),"success", true));
+    }
+
 }
