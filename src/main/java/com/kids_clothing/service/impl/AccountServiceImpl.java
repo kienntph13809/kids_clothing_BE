@@ -2,6 +2,10 @@ package com.kids_clothing.service.impl;
 
 import com.kids_clothing.repository.AccountDao;
 import com.kids_clothing.entity.Account;
+import com.kids_clothing.entity.Customer;
+import com.kids_clothing.model.request.AccountDto;
+import com.kids_clothing.model.request.CustomerDto;
+import com.kids_clothing.model.response.CustomerResponse;
 import com.kids_clothing.service.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,5 +52,8 @@ public class AccountServiceImpl implements AccountService {
     public boolean existsById(Long id) {
         return accountDao.existsById(id);
     }
-
+    @Override
+    public List<CustomerResponse> findByPhone(CustomerDto accountDto){
+        return accountDao.findByPhone(accountDto.getPhone());
+    }
 }

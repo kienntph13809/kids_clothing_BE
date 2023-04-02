@@ -13,4 +13,6 @@ public class CustomerDto {
     private String fullname;
     private String statuscustomer;
     private Long idaccount;
+    private String phone;
+
 }
