@@ -35,7 +35,7 @@ public class MailServiceImpl implements MailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("contact@shopme.com", "Mami Love Shop");
+        helper.setFrom("shopchilchildrenwear@outlook.com.vn", "Mami Love Shop");
         helper.setTo(account.getEmail());
 
         String subject = "Đã tạo đơn hàng!";

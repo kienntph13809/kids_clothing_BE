@@ -101,4 +101,10 @@ public class VoucherManagerController {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+    @GetMapping("/findby_name")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
+        return ResponseEntity.ok(new Res(voucherService.findbylikename(name), "thành công", true));
+    }
+
 }

@@ -1,8 +1,10 @@
 package com.kids_clothing.repository;
 
+import com.kids_clothing.entity.Product;
 import com.kids_clothing.entity.Voucher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,4 +20,8 @@ public interface VoucherDao extends JpaRepository<Voucher, Long> {
     List<Voucher> findAllByIsDeleteFalse();
 
     List<Voucher> findAllByIdeventAndIsDeleteFalse(Long idEvent);
+
+
+    @Query("SELECT V FROM Voucher V WHERE V.name LIKE %:name%")
+    List<Voucher> findByNameLike(@Param("name") String name);
 }

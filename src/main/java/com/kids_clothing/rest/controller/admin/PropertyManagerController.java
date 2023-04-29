@@ -1,6 +1,7 @@
 package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kids_clothing.entity.Product;
 import com.kids_clothing.entity.Property;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.PropertyService;
@@ -71,4 +72,5 @@ public class PropertyManagerController {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+
 }

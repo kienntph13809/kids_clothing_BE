@@ -44,4 +44,5 @@ public interface BillService {
     List<BillShiping> getShipingBillCustomer(String idBill) throws IOException;
 
     List<String> getAddress();
+    List<Bill> findByDayNewCreate();
 }

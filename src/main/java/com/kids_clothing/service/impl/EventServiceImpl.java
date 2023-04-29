@@ -83,4 +83,14 @@ public class EventServiceImpl implements EventService {
         });
 
     }
+
+    @Override
+    public List<Event> findbyname(String name) {
+        return eventDao.findByNameLike(name);
+    }
+
+    @Override
+    public List<Event> findByDayNewCreate() {
+        return eventDao.findByDayNewCreate();
+    }
 }

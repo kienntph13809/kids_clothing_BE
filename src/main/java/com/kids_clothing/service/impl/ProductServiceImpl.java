@@ -37,7 +37,12 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findAllByIsDeleteFalse() {
         return productDao.findAllByIsDeleteFalse();
     }
-    
+
+    @Override
+    public List<Product> findByDayNewCreate() {
+        return productDao.findByDayNewCreate();
+    }
+
     @Override
     public Product findById(Long id) {
         // TODO Auto-generated method stub
@@ -53,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
 	public List<Product> findByNameLike(String name) {
 		// TODO Auto-generated method stub
-		return productDao.findByNameLike(name);
+        return productDao.findByNameLike(name);
 	}
     
     @Override

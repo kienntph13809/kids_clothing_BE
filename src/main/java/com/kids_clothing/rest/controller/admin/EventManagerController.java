@@ -1,6 +1,7 @@
 package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kids_clothing.entity.Product;
 import com.kids_clothing.repository.EventDao;
 import com.kids_clothing.entity.Event;
 import com.kids_clothing.model.request.EventRequest;
@@ -96,4 +97,16 @@ public class EventManagerController {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+    @GetMapping("/findby_name")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
+        return ResponseEntity.ok(new Res(eventService.findbyname(name), "thành công", true));
+    }
+    @GetMapping("/findByDayNewCreate")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> findByDayNewCreate() {
+        List<Event> entity = eventService.findByDayNewCreate();
+        return ResponseEntity.ok(new Res(entity, "Success", true));
+    }
+
 }

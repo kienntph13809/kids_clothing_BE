@@ -137,5 +137,10 @@ public class AccountManagerController {
     public ResponseEntity<?> getOne(@RequestBody CustomerDto customer) {
         return ResponseEntity.ok(new Res(accountService.findByPhone(customer),"success", true));
     }
+    @GetMapping("/findby_name")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
+        return ResponseEntity.ok(new Res(accountService.findByname(name), "thành công", true));
+    }
 
 }

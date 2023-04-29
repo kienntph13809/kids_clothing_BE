@@ -13,7 +13,7 @@ public interface ProductService {
     List<Product> findProductNew();
 
     List<Product> findByCategoryDetail(Categorydetail categoryDetail);
-    
+
     List<Product> findByNameLike(String name);
 
     Product saveAndFlush(Product product);
@@ -25,4 +25,6 @@ public interface ProductService {
     Product create(Product product);
 
     List<Product> findAllByIsDeleteFalse();
+
+    List<Product> findByDayNewCreate();
 }

@@ -56,4 +56,9 @@ public class AccountServiceImpl implements AccountService {
     public List<CustomerResponse> findByPhone(CustomerDto accountDto){
         return accountDao.findByPhone(accountDto.getPhone());
     }
+
+    @Override
+    public List<Account> findByname(String name) {
+        return accountDao.findByNameLike(name);
+    }
 }
