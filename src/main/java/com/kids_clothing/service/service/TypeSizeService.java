@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface TypeSizeService {
     List<Typesize> findAll();
-    
+
     List<Typesize> findAllByIsDeleteFalse();
 
     Optional<Typesize> findById(Long id);
@@ -22,4 +22,6 @@ public interface TypeSizeService {
     Typesize update(Long id, TypeSizeRequest typeSizeRequest);
 
     Typesize delete(Long id);
+
+    List<Typesize> finbylikename(String name);
 }

@@ -166,9 +166,10 @@ public class BillServiceImpl extends BaseController implements BillService {
            }
            billDao.save(bill);
            orderDetailDao.saveAll(orderdetails);
-//           if (customer.getAccount().getEmail() != null) {
-//               mailService.sendCreateBill(customer.getAccount(), bill);
-//           }
+           if (customer.getAccount().getEmail() != null) {
+               mailService.sendCreateBill(customer.getAccount(), bill);
+               System.out.println("gui mail roi nha");
+           }
            return bill;
        }catch (Exception e){
            e.printStackTrace();
@@ -291,9 +292,10 @@ public class BillServiceImpl extends BaseController implements BillService {
             mamiPayDao.save(mamipay);
             refundPayBill(mamipay, bill);
         }
-//        if (customer.getAccount().getEmail() != null) {
-//            mailService.sendCreateManagerBill(customer.getAccount(), bill);
-//        }
+        if (customer.getAccount().getEmail() != null) {
+            mailService.sendCreateManagerBill(customer.getAccount(), bill);
+            System.out.println("đã gửi mail");
+        }
         bill.setUpdateAts(new Date());
         return billDao.save(bill);
     }
@@ -489,6 +491,11 @@ public class BillServiceImpl extends BaseController implements BillService {
             return add;
         }).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<Bill> findByDayNewCreate() {
+        return billDao.findByDayNewCreate();
     }
 
 

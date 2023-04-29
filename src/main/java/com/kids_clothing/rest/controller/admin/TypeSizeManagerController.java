@@ -86,4 +86,9 @@ public class TypeSizeManagerController {
     public ResponseEntity<Res> deleteTypeSize(@PathVariable("id") Long id) {
         return ResponseEntity.ok(new Res(typeSizeService.delete(id), "Thêm thành công", true));
     }
+    @GetMapping("/findby_name/{name}")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findbyname(@PathVariable String name) {
+        return ResponseEntity.ok(new Res(typeSizeService.finbylikename(name), "thành công", true));
+    }
 }

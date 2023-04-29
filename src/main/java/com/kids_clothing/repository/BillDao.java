@@ -49,4 +49,8 @@ public interface BillDao extends JpaRepository<Bill, String> {
             " where b.updateAts >= ?1 and b.updateAts < ?2 " +
             " and b.status = ?3 and b.refund = ?4")
     Long countBillRefund(Date start, Date end, EnumStatus status, EnumRefund refund);
+
+
+    @Query("SELECT b FROM Bill b ORDER BY b.createAt DESC")
+    List<Bill> findByDayNewCreate();
 }

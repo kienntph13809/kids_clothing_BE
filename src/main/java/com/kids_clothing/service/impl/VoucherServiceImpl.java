@@ -27,7 +27,7 @@ public class VoucherServiceImpl implements VoucherService {
     @Autowired
     EventDao eventDao;
 
-    @Autowired
+    @Autowired  
     ObjectMapper objectMapper;
 
     @Override
@@ -114,6 +114,11 @@ public class VoucherServiceImpl implements VoucherService {
         return voucherDao.findByIdIsAndIsDeleteFalse(id).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Không tìm thấy voucher");
         });
+    }
+
+    @Override
+    public List<Voucher> findbylikename(String name) {
+        return voucherDao.findByNameLike(name);
     }
 
 }

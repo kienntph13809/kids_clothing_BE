@@ -75,4 +75,9 @@ public class TypeSizeServiceImpl implements TypeSizeService {
         return typeSizeDao.save(typesize);
     }
 
+    @Override
+    public List<Typesize> finbylikename(String name) {
+        return typeSizeDao.findByNameLike(name);
+    }
+
 }

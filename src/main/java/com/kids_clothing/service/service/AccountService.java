@@ -24,4 +24,6 @@ public interface AccountService {
     List<Account> findAllByIsDeleteFalse();
 
     List<CustomerResponse> findByPhone(CustomerDto accountDto);
+    List<Account> findByname(String name);
+
 }

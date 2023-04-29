@@ -121,4 +121,10 @@ public class BillManagerControler {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+    @GetMapping("/findByDayNewCreate")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> findByDayNewCreate() {
+        List<Bill> entity = billService.findByDayNewCreate();
+        return ResponseEntity.ok(new Res(entity, "Success", true));
+    }
 }

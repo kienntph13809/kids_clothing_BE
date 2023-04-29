@@ -18,7 +18,7 @@ public interface ProductDao extends JpaRepository<Product, Long> {
     List<Product> findProductNew();
 
     List<Product> findByCategorydetail(Categorydetail categorydetail);
-    
+
     @Query("SELECT p FROM Product p WHERE p.name LIKE %:name%")
     List<Product> findByNameLike(@Param("name") String name);
 
@@ -31,4 +31,7 @@ public interface ProductDao extends JpaRepository<Product, Long> {
     void deleteInBatch(Iterable<Product> product);
 
     List<Product> findAllByIsDeleteFalse();
+
+    @Query("SELECT p FROM Product p ORDER BY p.day_update DESC")
+    List<Product> findByDayNewCreate();
 }

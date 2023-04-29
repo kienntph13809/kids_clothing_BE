@@ -14,7 +14,7 @@ public class MailConfig {
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setDefaultEncoding("utf-8");
-        mailSender.setHost("smtp.gmail.com");
+        mailSender.setHost("smtp.office365.com");
         mailSender.setPort(587);
 
         mailSender.setUsername(MyConstants.MY_EMAIL);

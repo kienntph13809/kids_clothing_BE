@@ -28,4 +28,6 @@ public interface VoucherService {
     List<Voucher> findAllVoucherByIdEvent(Long idEvent);
 
     Voucher findById(Long id);
+
+    List<Voucher> findbylikename(String name);
 }
