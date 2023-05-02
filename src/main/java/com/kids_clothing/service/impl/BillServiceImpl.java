@@ -110,7 +110,6 @@ public class BillServiceImpl extends BaseController implements BillService {
                while (billDao.existsById(bill.getId())) {
                    bill.setId(RandomStringUtils.randomNumeric(8));
                }
-               //dánh sách sp có quantiiy
                // danh sách chi tiết đơn hàng
                List<Orderdetail> orderdetails = new ArrayList<>();
 
