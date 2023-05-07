@@ -127,4 +127,19 @@ public class BillManagerControler {
         List<Bill> entity = billService.findByDayNewCreate();
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
+    @GetMapping("/findby_status")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findstatus(@RequestParam("name") String name) {
+        return ResponseEntity.ok(new Res(billService.findBystatus(name), "thành công", true));
+    } @GetMapping("/findby_statusshiping")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findstatusshiping(@RequestParam("name") String name) {
+        return ResponseEntity.ok(new Res(billService.findBystatusshipping(name), "thành công", true));
+    }
+    @GetMapping("/findby_payment")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findpayment(@RequestParam("name") int name) {
+        return ResponseEntity.ok(new Res(billService.findbypayment(name), "thành công", true));
+    }
+
 }

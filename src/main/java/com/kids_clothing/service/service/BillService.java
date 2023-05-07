@@ -45,4 +45,9 @@ public interface BillService {
 
     List<String> getAddress();
     List<Bill> findByDayNewCreate();
+    List<Bill> findBystatus(String status);
+    List<Bill> findBystatusshipping( String statusshipping );
+
+    List<Bill>findbyID(String id);
+    List<Bill>findbypayment(int payment);
 }

@@ -2,9 +2,11 @@ package com.kids_clothing.repository;
 
 import com.kids_clothing.common.EnumRefund;
 import com.kids_clothing.common.EnumStatus;
+import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -53,4 +55,12 @@ public interface BillDao extends JpaRepository<Bill, String> {
 
     @Query("SELECT b FROM Bill b ORDER BY b.createAt DESC")
     List<Bill> findByDayNewCreate();
+    @Query("SELECT b FROM Bill b WHERE b.statusshipping =:statusshipping")
+    List<Bill> findBystatusshipping(@Param("statusshipping") String statusshipping);
+    @Query(value = "SELECT * FROM Bill  WHERE status = :status",nativeQuery = true)
+    List<Bill> findByStatus(@Param("status") String status);
+
+    @Query(value = "SELECT * FROM Bill  WHERE payment  = :payment",nativeQuery = true)
+    List<Bill> findBypayment(@Param("payment") int payment);
+
 }

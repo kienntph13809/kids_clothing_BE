@@ -577,5 +577,25 @@ public class BillServiceImpl extends BaseController implements BillService {
         return billDao.findByDayNewCreate();
     }
 
+    @Override
+    public List<Bill> findBystatus(String status) {
+        return billDao.findByStatus(status);
+    }
+
+    @Override
+    public List<Bill> findBystatusshipping(String statusshipping) {
+        return billDao.findBystatusshipping(statusshipping);
+    }
+
+    @Override
+    public List<Bill> findbyID(String id) {
+        return null;
+    }
+
+    @Override
+    public List<Bill> findbypayment(int payment) {
+        return billDao.findBypayment(payment);
+    }
+
 
 }
