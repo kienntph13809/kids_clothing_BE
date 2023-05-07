@@ -35,7 +35,7 @@ public class MailServiceImpl implements MailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("shopchilchildrenwear@outlook.com.vn", "Mami Love Shop");
+        helper.setFrom("kpi@itelecom.vn", "Mami Love Shop");
         helper.setTo(account.getEmail());
 
         String subject = "Đã tạo đơn hàng!";
@@ -64,7 +64,7 @@ public class MailServiceImpl implements MailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("contact@shopme.com", "Mami Love Shop");
+        helper.setFrom("kpi@itelecom.vn", "Mami Love Shop");
         helper.setTo(account.getEmail());
 
         String subject = "Đơn hàng đã hủy!";
@@ -73,7 +73,7 @@ public class MailServiceImpl implements MailService {
                 + "<p>Đơn hàng của bạn đã được Hủy!</p>"
                 + "<p>Mã đơn hàng: <b>" + bill.getId() + "</b></p>"
                 + "<br>"
-                + "<p><u>Mọi thắc mắc vui lòng liên hệ:</u> mamilovepro2112@gmail.com</p>";
+                + "<p><u>Mọi thắc mắc vui lòng liên hệ:</u>kpi@itelecom.vn</p>";
 
         helper.setSubject(subject);
 
@@ -87,7 +87,7 @@ public class MailServiceImpl implements MailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("contact@shopme.com", "Mami Love Shop");
+        helper.setFrom("kpi@itelecom.vn", "Mami Love Shop");
         helper.setTo(account.getEmail());
 
         String subject = "Đơn hàng đã hủy!";
@@ -110,7 +110,8 @@ public class MailServiceImpl implements MailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("contact@shopme.com", "Mami Love Shop");
+        helper.setFrom("kpi@itelecom.vn" +
+                "", "Mami Love Shop");
         helper.setTo(account.getEmail());
 
         String subject = "Đơn hàng đã gửi bên vận chuyển!";
