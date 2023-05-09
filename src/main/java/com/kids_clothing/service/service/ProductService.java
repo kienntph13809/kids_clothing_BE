@@ -2,6 +2,7 @@ package com.kids_clothing.service.service;
 
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.entity.Product;
+import com.kids_clothing.model.request.ProductRequest;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface ProductService {
     List<Product> findAllByIsDeleteFalse();
 
     List<Product> findByDayNewCreate();
+
+    List<ProductRequest> fillallproduc();
 }

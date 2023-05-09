@@ -23,3 +23,5 @@ public class ProductDto {
     private Boolean isDelete = false;
     private Long idcategorydetail;
 }
+
+
