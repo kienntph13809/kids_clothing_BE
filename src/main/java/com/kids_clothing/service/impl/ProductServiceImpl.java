@@ -43,6 +43,8 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findByDayNewCreate();
     }
 
+
+
     @Override
     public Product findById(Long id) {
         // TODO Auto-generated method stub

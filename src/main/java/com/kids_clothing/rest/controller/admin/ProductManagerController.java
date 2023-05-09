@@ -89,4 +89,9 @@ public class ProductManagerController {
         List<Product> entity = productService.findByDayNewCreate();
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
+    @GetMapping("/findby_name")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
+        return ResponseEntity.ok(new Res(productService.findByNameLike(name), "thành công", true));
+    }
     }
