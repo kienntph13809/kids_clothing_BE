@@ -2,6 +2,7 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kids_clothing.entity.Product;
+import com.kids_clothing.model.request.ProductRequest;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.CategoryDetailService;
 import com.kids_clothing.service.service.ImageService;
@@ -89,9 +90,10 @@ public class ProductManagerController {
         List<Product> entity = productService.findByDayNewCreate();
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
-    @GetMapping("/findby_name")
+    @GetMapping("/findAllproduc")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
-        return ResponseEntity.ok(new Res(productService.findByNameLike(name), "thành công", true));
+    public ResponseEntity<?> findAllproduc() {
+        List<ProductRequest> entity = productService.fillallproduc();
+        return ResponseEntity.ok(new Res(entity, "Success", true));
     }
     }

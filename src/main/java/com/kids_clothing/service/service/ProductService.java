@@ -27,6 +27,4 @@ public interface ProductService {
     List<Product> findAllByIsDeleteFalse();
 
     List<Product> findByDayNewCreate();
-
-
 }

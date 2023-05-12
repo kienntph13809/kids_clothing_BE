@@ -1,5 +1,6 @@
 package com.kids_clothing.service.impl;
 
+import com.kids_clothing.model.request.ProductRequest;
 import com.kids_clothing.repository.ProductDao;
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.entity.Product;
@@ -44,6 +45,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
+
+    @Override
+    public List<ProductRequest> fillallproduc() {
+        return productDao.fillallproduc();
+    }
 
     @Override
     public Product findById(Long id) {
