@@ -29,8 +29,8 @@ public interface AccountDao extends JpaRepository<Account, Long> {
     @Query("SELECT a.phone as phone ,c.fullname as fullName FROM Customer c JOIN c.account a WHERE a.phone LIKE :phone%")
     List<CustomerResponse> findByPhone(@Param("phone") String phone);
 
-    @Query("SELECT ac FROM Account ac WHERE ac.username LIKE %:username%")
-    List<Account> findByNameLike(@Param("username") String name);
+    @Query("SELECT ac FROM Account ac WHERE ac.phone LIKE %:name%")
+    List<Account> findByNameLike(@Param("name") String name);
 
 
 }
