@@ -56,6 +56,7 @@ public class BillController extends BaseController {
 
     @PostMapping("/creat")
     public ResponseEntity<?> createBill(@RequestBody BillDto billDto) throws MessagingException, UnsupportedEncodingException {
+        System.out.println("ok");
         return ResponseEntity.ok(new Res(billService.create(billDto), "oke", true));
     }
 
