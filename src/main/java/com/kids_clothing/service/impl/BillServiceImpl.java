@@ -102,7 +102,7 @@ public class BillServiceImpl extends BaseController implements BillService {
            if(billDto.getStatusshipping().equals("Đơn không đăng nhập")){
                customer = customerDao.findByIdaccount(8L);
                bill.setIdCustomer(6L);
-               bill.setStatus(EnumStatus.KHACH_DA_NHAN_HANG);
+               bill.setStatus(EnumStatus.CHUA_XAC_NHAN);
                bill.setCreateAt(new Date());
                bill.setUpdateAts(new Date());
 
