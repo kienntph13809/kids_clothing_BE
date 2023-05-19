@@ -34,6 +34,9 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findAll();
     }
 
+
+
+
     @Override
     public List<Product> findAllByIsDeleteFalse() {
         return productDao.findAllByIsDeleteFalse();
@@ -44,11 +47,14 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findByDayNewCreate();
     }
 
-
-
     @Override
     public List<ProductRequest> fillallproduc() {
         return productDao.fillallproduc();
+    }
+
+    @Override
+    public List<ProductRequest> findPriceProduct(double minPrice, double maxPrice , String name) {
+           return productDao.findPriceProduct(minPrice, maxPrice , name);
     }
 
     @Override
@@ -64,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-	public List<Product> findByNameLike(String name) {
+	public List<ProductRequest> findByNameLike(String name) {
 		// TODO Auto-generated method stub
         return productDao.findByNameLike(name);
 	}

@@ -10,5 +10,4 @@ public interface ProductRequest {
     String getcategory_name();
     String getcategory_id();
     String getquantity();
-
 }

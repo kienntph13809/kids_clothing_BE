@@ -2,11 +2,13 @@ package com.kids_clothing.service.service;
 
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.entity.Product;
+import com.kids_clothing.model.request.ProductRequest;
 
 import java.util.List;
 
 public interface ProductService {
     List<Product> findAll();
+
 
     Product findById(Long id);
 
@@ -14,7 +16,7 @@ public interface ProductService {
 
     List<Product> findByCategoryDetail(Categorydetail categoryDetail);
 
-    List<Product> findByNameLike(String name);
+    List<ProductRequest> findByNameLike(String name);
 
     Product saveAndFlush(Product product);
 
@@ -27,4 +29,9 @@ public interface ProductService {
     List<Product> findAllByIsDeleteFalse();
 
     List<Product> findByDayNewCreate();
+
+    List<ProductRequest> fillallproduc();
+
+    List<ProductRequest> findPriceProduct(double minPrice, double maxPrice, String name);
+
 }
