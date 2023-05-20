@@ -106,7 +106,7 @@ public class ProductManagerController {
                                              @RequestParam(required = false) String name
                                              ) {
 
-        List<ProductRequest> entity = productService.findPriceProduct(Double.parseDouble(minPrice), Double.parseDouble(maxPrice), name);
+        List<ProductRequest> entity = productService.findPriceProduct(minPrice, maxPrice, name);
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
 

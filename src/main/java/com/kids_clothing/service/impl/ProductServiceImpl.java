@@ -53,8 +53,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductRequest> findPriceProduct(double minPrice, double maxPrice , String name) {
-           return productDao.findPriceProduct(minPrice, maxPrice , name);
+    public List<ProductRequest> findPriceProduct(String minPrice, String maxPrice , String name) {
+        Double miPrice = Double.parseDouble(minPrice);
+        Double maPrice  = Double.parseDouble(maxPrice);
+        if(miPrice == null && maPrice == null && name == "" ) {
+            return productDao.fillallproduc();
+        }
+        if (miPrice == null && maPrice == null && name != "" ) {
+            return productDao.findByNameLike(name);
+        }
+        return productDao.findPriceProduct(miPrice, maPrice , name);
     }
 
     @Override
