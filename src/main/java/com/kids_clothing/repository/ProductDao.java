@@ -64,7 +64,7 @@ public interface ProductDao extends JpaRepository<Product, Long> {
             "WHERE product.name LIKE %:name% " +
             "AND product.price BETWEEN :minPrice AND :maxPrice " +
             "GROUP BY productdetail.idproduct", nativeQuery = true)
-    List<ProductRequest> findPriceProduct(@Param("minPrice") double minPrice, @Param("maxPrice") double maxPrice, @Param("name") String name);
+    List<ProductRequest> findPriceProduct(@Param("minPrice") String minPrice, @Param("maxPrice") String maxPrice, @Param("name") String name);
 
 
 }

@@ -104,10 +104,8 @@ public class ProductManagerController {
     public ResponseEntity<?> findPriceProduc(@RequestParam(required = false) String minPrice,
                                              @RequestParam(required = false) String maxPrice,
                                              @RequestParam(required = false) String name
-                                             ) {
-
-        List<ProductRequest> entity = productService.findPriceProduct(minPrice, maxPrice, name);
-        return ResponseEntity.ok(new Res(entity, "Success", true));
+    ) {
+        return ResponseEntity.ok(new Res(productService.findPriceProduct(minPrice, maxPrice, name),"Success", true));
     }
 
     @GetMapping("/findby_name")
