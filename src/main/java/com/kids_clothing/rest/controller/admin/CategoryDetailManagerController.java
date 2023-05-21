@@ -76,6 +76,7 @@ public class CategoryDetailManagerController {
     public ResponseEntity<Res> delete(@PathVariable("id") Long id, Categorydetail category) {
         category = categoryDetailService.findById(id).orElseThrow(
                 () -> {
+
                     throw new RuntimeException("Danh mục không tồn tại");
                 });
         if (category != null) {

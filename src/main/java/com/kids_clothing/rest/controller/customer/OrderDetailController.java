@@ -1,8 +1,9 @@
 package com.kids_clothing.rest.controller.customer;
 
-import com.kids_clothing.repository.OrderDetailDao;
 import com.kids_clothing.entity.Orderdetail;
 import com.kids_clothing.model.response.Res;
+import com.kids_clothing.repository.BillDao;
+import com.kids_clothing.repository.OrderDetailDao;
 import com.kids_clothing.service.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class OrderDetailController {
     @Autowired
     OrderDetailDao orderDetailDao;
 
+    @Autowired
+    BillDao billDao;
+
 
     @GetMapping("/list")
     public ResponseEntity<List<Orderdetail>> listOrderdetail() {
@@ -28,13 +32,40 @@ public class OrderDetailController {
 
     @PostMapping("{id}")
     public ResponseEntity<?> AllByCustomer(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(new Res(orderDetailService.AllByCustomer(id), "dat", true));
+        return ResponseEntity.ok(new Res(orderDetailService.AllByCustomer(id), "ok", true));
     }
 
     @GetMapping("/{idbill}")
     @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<List<Orderdetail>> findByIdBill(@PathVariable("idbill") String idbill) {
         return ResponseEntity.ok(orderDetailDao.getListOrderDetail(idbill));
+
+    }
+
+    @PostMapping("/update/{idbill}/{idOrder}/{newQuantity}")
+    public ResponseEntity<?> updateQuantity(@PathVariable("idbill") String idbill,
+                                            @PathVariable("newQuantity") Long newQuantity,
+                                            @PathVariable("idOrder") Long idOrder) {
+        orderDetailDao.updateQuantitydetailByBillId(newQuantity,idbill,idOrder);
+        return ResponseEntity.ok(new Res(orderDetailDao.getListOrderDetail(idbill),"update oK",true));
+
+    }
+
+    @PostMapping("/update_address/{idBill}/{addressNew}")
+    public ResponseEntity<?> updateAddress( @PathVariable("addressNew") String addressNew,
+                                            @PathVariable("idBill") String idBill) {
+        billDao.updateAddressByBillId(addressNew,idBill);
+        System.out.println(addressNew);
+        return ResponseEntity.ok(new Res("update oK",true));
+
+    }
+
+    @PostMapping("/update_address/{idBill}/{addressNew}")
+    public ResponseEntity<?> delete( @PathVariable("addressNew") String addressNew,
+                                            @PathVariable("idBill") String idBill) {
+        billDao.updateAddressByBillId(addressNew,idBill);
+        System.out.println(addressNew);
+        return ResponseEntity.ok(new Res("update oK",true));
 
     }
 
