@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/Manager/ProductManagerController")
 public class ProductManagerController {
     private final Path root = Paths.get("severImg");

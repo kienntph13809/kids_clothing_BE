@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/Manager/AccountManagerController")
 public class AccountManagerController {
@@ -132,14 +132,14 @@ public class AccountManagerController {
         }
     }
 
-    @PostMapping(value = "/findByPhone")
+//    @PostMapping(value = "/findByPhone")
+//    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+//    public ResponseEntity<?> getOne(@RequestBody CustomerDto customer) {
+//        return ResponseEntity.ok(new Res(accountService.findByPhone(customer),"success", true));
+//    }
+    @GetMapping("/findByPhone/{phone}")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> getOne(@RequestBody CustomerDto customer) {
-        return ResponseEntity.ok(new Res(accountService.findByPhone(customer),"success", true));
-    }
-    @GetMapping("/findby_name")
-    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
+    public ResponseEntity<?> findbyname(@PathVariable("phone") String name) {
         return ResponseEntity.ok(new Res(accountService.findByname(name), "thành công", true));
     }
 
