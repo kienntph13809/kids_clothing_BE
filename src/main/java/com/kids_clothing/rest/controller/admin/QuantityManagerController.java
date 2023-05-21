@@ -21,7 +21,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("*")
 @RequestMapping("/Manager/QuantityManagerController")
 public class QuantityManagerController {
 	@Autowired

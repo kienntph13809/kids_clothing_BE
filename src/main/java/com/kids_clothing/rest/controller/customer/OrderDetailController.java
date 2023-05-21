@@ -11,10 +11,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Customer/OrderDetailController")
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("*")
 public class OrderDetailController {
     @Autowired
     OrderDetailService orderDetailService;
@@ -46,6 +47,9 @@ public class OrderDetailController {
     public ResponseEntity<?> updateQuantity(@PathVariable("idbill") String idbill,
                                             @PathVariable("newQuantity") Long newQuantity,
                                             @PathVariable("idOrder") Long idOrder) {
+      Optional<Orderdetail> opOrder =  orderDetailDao.findById(idOrder);
+      Orderdetail order = opOrder.get();
+      order.setDownprice(Double.valueOf(1111));
         orderDetailDao.updateQuantitydetailByBillId(newQuantity,idbill,idOrder);
         return ResponseEntity.ok(new Res(orderDetailDao.getListOrderDetail(idbill),"update oK",true));
 
