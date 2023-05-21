@@ -1,14 +1,12 @@
-
 package com.kids_clothing.rest.controller.customer;
 
 import com.kids_clothing.controllers.BaseController;
-import com.kids_clothing.repository.AccountDao;
-import com.kids_clothing.repository.QuantityDao;
 import com.kids_clothing.entity.Bill;
-
 import com.kids_clothing.model.request.BillDto;
 import com.kids_clothing.model.request.UpdateBillCutomer;
 import com.kids_clothing.model.response.Res;
+import com.kids_clothing.repository.AccountDao;
+import com.kids_clothing.repository.QuantityDao;
 import com.kids_clothing.service.service.BillService;
 import com.kids_clothing.service.service.CustomerService;
 import com.kids_clothing.service.service.OrderDetailService;

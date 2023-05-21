@@ -58,7 +58,7 @@ public class ProductController {
     }
 
     @GetMapping("/findByNameLike/{name}")
-    public ResponseEntity<?> findByNameLike(@PathVariable("name") String name){
+    public ResponseEntity<?> findByNameLike(@PathVariable("name") String name) {
         List<ProductRequest> entity = productService.findByNameLike(name);
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }

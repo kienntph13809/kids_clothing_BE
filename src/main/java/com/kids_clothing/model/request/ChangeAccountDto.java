@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChangeAccountDto {
-	private Long id;
-	private String fullname;
-	private String email;
-	private String username;
-	private String sdt;
-	private String address;
+    private Long id;
+    private String fullname;
+    private String email;
+    private String username;
+    private String sdt;
+    private String address;
 }

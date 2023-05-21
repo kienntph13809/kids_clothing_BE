@@ -1,14 +1,14 @@
 package com.kids_clothing.seeder;
 
 import com.kids_clothing.common.ERole;
-import com.kids_clothing.repository.AccountDao;
-import com.kids_clothing.repository.AuthorityDao;
-import com.kids_clothing.repository.CustomerDao;
-import com.kids_clothing.repository.RoleDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Authority;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.entity.Role;
+import com.kids_clothing.repository.AccountDao;
+import com.kids_clothing.repository.AuthorityDao;
+import com.kids_clothing.repository.CustomerDao;
+import com.kids_clothing.repository.RoleDao;
 
 public class AccountSeeder implements Seeder {
 

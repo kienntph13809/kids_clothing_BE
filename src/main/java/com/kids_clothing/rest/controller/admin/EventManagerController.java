@@ -1,11 +1,10 @@
 package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.entity.Product;
-import com.kids_clothing.repository.EventDao;
 import com.kids_clothing.entity.Event;
 import com.kids_clothing.model.request.EventRequest;
 import com.kids_clothing.model.response.Res;
+import com.kids_clothing.repository.EventDao;
 import com.kids_clothing.service.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -57,7 +56,7 @@ public class EventManagerController {
     public ResponseEntity<Res> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(new Res(eventService.findById(id), "thành công", true));
     }
-    
+
     @PostMapping("/updateInline")
     public ResponseEntity<?> updateInline(@RequestParam(required = false, value = "createdItems") String createdItems,
                                           @RequestParam(required = false, value = "updatedItems") String updatedItems,
@@ -97,11 +96,13 @@ public class EventManagerController {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+
     @GetMapping("/findby_name")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
         return ResponseEntity.ok(new Res(eventService.findbyname(name), "thành công", true));
     }
+
     @GetMapping("/findByDayNewCreate")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByDayNewCreate() {

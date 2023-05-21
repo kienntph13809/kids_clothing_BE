@@ -1,7 +1,6 @@
 package com.kids_clothing.rest.controller.admin;
 
 import com.kids_clothing.common.EnumStatus;
-
 import com.kids_clothing.model.request.QtyByDayRequest;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.impl.StatisServiceImpl;
@@ -50,7 +49,7 @@ public class StatisController {
     @Description(value = "thong ke so luong sp theo thang")
     @GetMapping("/quantityByMonth")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Res> getQuantityByMonth(@RequestParam("status")EnumStatus status) {
+    public ResponseEntity<Res> getQuantityByMonth(@RequestParam("status") EnumStatus status) {
         return ResponseEntity.ok(new Res(statisService.quantityByMonth(status), "Thành công", true));
     }
 

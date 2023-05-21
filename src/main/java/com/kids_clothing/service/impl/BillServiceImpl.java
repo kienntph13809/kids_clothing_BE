@@ -5,13 +5,12 @@ import com.kids_clothing.common.EnumRefund;
 import com.kids_clothing.common.EnumStatus;
 import com.kids_clothing.common.Message;
 import com.kids_clothing.controllers.BaseController;
-import com.kids_clothing.repository.*;
 import com.kids_clothing.entity.*;
-
 import com.kids_clothing.model.request.BillDto;
 import com.kids_clothing.model.request.QuantityRequest;
 import com.kids_clothing.model.request.ShipingRequest;
 import com.kids_clothing.model.request.UpdateBillCutomer;
+import com.kids_clothing.repository.*;
 import com.kids_clothing.service.service.BillService;
 import com.kids_clothing.service.service.CustomerService;
 import com.kids_clothing.service.service.OrderDetailService;
@@ -95,101 +94,100 @@ public class BillServiceImpl extends BaseController implements BillService {
     @Transactional
     public Bill create(BillDto billDto) throws MessagingException, UnsupportedEncodingException {
         //tim kiem nguoi dung
-       try {
-           Customer customer = new Customer();
-           Bill bill = objectMapper.convertValue(billDto, Bill.class);
-           if(billDto.getStatusshipping().equals("Đơn không đăng nhập")){
-               customer = customerDao.findByIdaccount(8L);
-               bill.setIdCustomer(6L);
-               if(billDto.getAddress().equals("Mua hàng tại quầy")){
-                   bill.setStatus(EnumStatus.KHACH_DA_NHAN_HANG);
-                   return getBill(billDto, customer, bill);
-               }else {
-                   bill.setStatus(EnumStatus.CHUA_XAC_NHAN);
-                   return getBill(billDto, customer, bill);
-               }
+        try {
+            Customer customer = new Customer();
+            Bill bill = objectMapper.convertValue(billDto, Bill.class);
+            if (billDto.getStatusshipping().equals("Đơn không đăng nhập")) {
+                customer = customerDao.findByIdaccount(8L);
+                bill.setIdCustomer(6L);
+                if (billDto.getAddress().equals("Mua hàng tại quầy")) {
+                    bill.setStatus(EnumStatus.KHACH_DA_NHAN_HANG);
+                    return getBill(billDto, customer, bill);
+                } else {
+                    bill.setStatus(EnumStatus.CHUA_XAC_NHAN);
+                    return getBill(billDto, customer, bill);
+                }
 
-           }
-           else if(billDto.getStatusshipping().equals("Đang xử lý")) {
-               customer = customerDao.findByIdaccount(getAuthUID());
-               bill.setIdCustomer(customer.getId());
-               bill.setCreateAt(new Date());
-               bill.setUpdateAts(new Date());
+            } else if (billDto.getStatusshipping().equals("Đang xử lý")) {
+                customer = customerDao.findByIdaccount(getAuthUID());
+                bill.setIdCustomer(customer.getId());
+                bill.setCreateAt(new Date());
+                bill.setUpdateAts(new Date());
 
-               bill.setId(RandomStringUtils.randomNumeric(8));
-               while (billDao.existsById(bill.getId())) {
-                   bill.setId(RandomStringUtils.randomNumeric(8));
-               }
-               //dánh sách sp có quantiiy
-               // danh sách chi tiết đơn hàng
-               List<Orderdetail> orderdetails = new ArrayList<>();
+                bill.setId(RandomStringUtils.randomNumeric(8));
+                while (billDao.existsById(bill.getId())) {
+                    bill.setId(RandomStringUtils.randomNumeric(8));
+                }
+                //dánh sách sp có quantiiy
+                // danh sách chi tiết đơn hàng
+                List<Orderdetail> orderdetails = new ArrayList<>();
 
-               List<QuantityRequest> quantityRequests = billDto.getList_quantity();
-               for (QuantityRequest qty : quantityRequests) {
-                   ProductDetail productDetail = quantityDao.findById(qty.getId_quantity()).
-                           orElseThrow(() -> new RuntimeException("Lỗi thêm sản phẩm"));
-                   Product product = objectMapper.convertValue(productDetail.getProduct(), Product.class);
-                   StringBuilder message = new StringBuilder();
-                   if (productDetail.getQuantity() < qty.getBill_quantity()) {
-                       String er = "Sản phẩm: " + productDetail.getProduct().getName()
-                               + " Size: " + productDetail.getSize().getName() + "-" + productDetail.getProperty().getName()
-                               + " đã hết hàng.";
-                       message.append(er).append("\n");
-                   }
-                   if (message.toString().length() > 0) {
-                       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message.toString());
-                   }
-                   Orderdetail orderdetail = new Orderdetail();
-                   orderdetail.setIdproductDetail(productDetail.getId());
-                   orderdetail.setQuantitydetail(qty.getBill_quantity());
-                   orderdetail.setPrice(product.getPrice());
-                   orderdetail.setDownprice(product.getDiscount() != null ? product.getPrice() * (product.getDiscount() / 100) : 0);
-                   orderdetail.setIntomoney(product.getPrice() - orderdetail.getDownprice());
-                   orderdetail.setIdbill(bill.getId());
-                   orderdetail.setCreateAt(new Date());
+                List<QuantityRequest> quantityRequests = billDto.getList_quantity();
+                for (QuantityRequest qty : quantityRequests) {
+                    ProductDetail productDetail = quantityDao.findById(qty.getId_quantity()).
+                            orElseThrow(() -> new RuntimeException("Lỗi thêm sản phẩm"));
+                    Product product = objectMapper.convertValue(productDetail.getProduct(), Product.class);
+                    StringBuilder message = new StringBuilder();
+                    if (productDetail.getQuantity() < qty.getBill_quantity()) {
+                        String er = "Sản phẩm: " + productDetail.getProduct().getName()
+                                + " Size: " + productDetail.getSize().getName() + "-" + productDetail.getProperty().getName()
+                                + " đã hết hàng.";
+                        message.append(er).append("\n");
+                    }
+                    if (message.toString().length() > 0) {
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message.toString());
+                    }
+                    Orderdetail orderdetail = new Orderdetail();
+                    orderdetail.setIdproductDetail(productDetail.getId());
+                    orderdetail.setQuantitydetail(qty.getBill_quantity());
+                    orderdetail.setPrice(product.getPrice());
+                    orderdetail.setDownprice(product.getDiscount() != null ? product.getPrice() * (product.getDiscount() / 100) : 0);
+                    orderdetail.setIntomoney(product.getPrice() - orderdetail.getDownprice());
+                    orderdetail.setIdbill(bill.getId());
+                    orderdetail.setCreateAt(new Date());
 
-                   orderdetails.add(orderdetail);
-               }
-               if (!billDto.getPayment()) {
-                   //không thanh toán qua ví
-                   bill.setDiscount(0d);
-                   bill.setVoucher_id(null);
-               } else {
-                   //thanh toan bang vi
-                   Mamipay mamipay = mamipayService.ByCustomer(customer.getId());
-                   if (mamipay.getSurplus() < billDto.getTotal()) {
-                       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Số dư ví phải lớn hơn hoặc bằng: " + billDto.getTotal());
-                   }
-                   Voucher voucher;
-                   if (billDto.getVoucher_id() != null) {
-                       voucher = voucherDao.findByIdIsAndIsDeleteFalse(billDto.getVoucher_id()).orElseThrow(() -> {
-                           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Không tìm thấy voucher");
-                       });
-                       if (voucher.getAmount() <= 0) {
-                           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Voucher đã hết");
-                       }
-                       bill.setDiscount(voucher.getDiscount());
-                       bill.setVoucher_id(voucher.getId());
-                       voucher.setAmount(voucher.getAmount() - 1L);
-                       voucherDao.save(voucher);
-                   }
-                   mamipay.setSurplus(mamipay.getSurplus() - billDto.getDowntotal());
-                   mamiPayDao.save(mamipay);
-                   createPayBill(mamipay, bill);
-               }
-               billDao.save(bill);
-               orderDetailDao.saveAll(orderdetails);
-               if (customer.getAccount().getEmail() != null) {
-                   mailService.sendCreateBill(customer.getAccount(), bill);
-                   System.out.println("gui mail roi nha");
-               }
-               return bill;
-           }
-           return null;
-       }catch (Exception e){
-           e.printStackTrace();
-           return null;
-       }
+                    orderdetails.add(orderdetail);
+                }
+                if (!billDto.getPayment()) {
+                    //không thanh toán qua ví
+                    bill.setDiscount(0d);
+                    bill.setVoucher_id(null);
+                } else {
+                    //thanh toan bang vi
+                    Mamipay mamipay = mamipayService.ByCustomer(customer.getId());
+                    if (mamipay.getSurplus() < billDto.getTotal()) {
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Số dư ví phải lớn hơn hoặc bằng: " + billDto.getTotal());
+                    }
+                    Voucher voucher;
+                    if (billDto.getVoucher_id() != null) {
+                        voucher = voucherDao.findByIdIsAndIsDeleteFalse(billDto.getVoucher_id()).orElseThrow(() -> {
+                            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Không tìm thấy voucher");
+                        });
+                        if (voucher.getAmount() <= 0) {
+                            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Voucher đã hết");
+                        }
+                        bill.setDiscount(voucher.getDiscount());
+                        bill.setVoucher_id(voucher.getId());
+                        voucher.setAmount(voucher.getAmount() - 1L);
+                        voucherDao.save(voucher);
+                    }
+                    mamipay.setSurplus(mamipay.getSurplus() - billDto.getDowntotal());
+                    mamiPayDao.save(mamipay);
+                    createPayBill(mamipay, bill);
+                }
+                billDao.save(bill);
+                orderDetailDao.saveAll(orderdetails);
+                if (customer.getAccount().getEmail() != null) {
+                    mailService.sendCreateBill(customer.getAccount(), bill);
+                    System.out.println("gui mail roi nha");
+                }
+                return bill;
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private Bill getBill(BillDto billDto, Customer customer, Bill bill) throws UnsupportedEncodingException, MessagingException {
@@ -241,7 +239,7 @@ public class BillServiceImpl extends BaseController implements BillService {
         billDao.save(bill);
         orderDetailDao.saveAll(orderdetails);
         bill.setUpdateAts(new Date());
-         billDao.save(bill);
+        billDao.save(bill);
 
         if (customer.getAccount().getEmail() != null) {
             mailService.sendCreateBill(customer.getAccount(), bill);
@@ -407,7 +405,6 @@ public class BillServiceImpl extends BaseController implements BillService {
         quantityDao.saveAll(quantities);
         bill.setUpdateAts(new Date());
         return billDao.save(bill);
-
 
 
     }
@@ -597,31 +594,31 @@ public class BillServiceImpl extends BaseController implements BillService {
 
     @Override
     public List<Bill> findByDateAndpaymentAndstatus(String date, String dateto, Integer payment, String status) {
-        if (date != "" && dateto != "" && status == "" && payment == null ){
+        if (date != "" && dateto != "" && status == "" && payment == null) {
             return billDao.findBydate(date, dateto);
         }
-        if (date == "" && dateto == "" && status != "" && payment == null ){
+        if (date == "" && dateto == "" && status != "" && payment == null) {
             return billDao.findByStatus(status);
         }
-        if (date != "" && dateto != "" && status == "" && payment != null ){
-            return billDao.findBydateAndpayment(date, dateto,payment);
+        if (date != "" && dateto != "" && status == "" && payment != null) {
+            return billDao.findBydateAndpayment(date, dateto, payment);
         }
-        if (date == "" && dateto == "" && status != "" && payment == null ){
+        if (date == "" && dateto == "" && status != "" && payment == null) {
             return billDao.findByStatus(status);
         }
-        if (date != "" && dateto != "" && status == "" && payment == null ){
+        if (date != "" && dateto != "" && status == "" && payment == null) {
             return billDao.findBydate(date, dateto);
         }
-        if (date != null && dateto != null && status != "" && payment == null ){
-            return billDao.findBydateAndStatus(date, dateto,status);
+        if (date != null && dateto != null && status != "" && payment == null) {
+            return billDao.findBydateAndStatus(date, dateto, status);
         }
-        if (date == "" && dateto == "" && status  == "" && payment != null ){
+        if (date == "" && dateto == "" && status == "" && payment != null) {
             return billDao.findBypayment(payment);
         }
-        if (status != "" && payment != null && dateto == "" && date == ""){
-            return billDao.findbypaymentAndstatus(payment,status);
+        if (status != "" && payment != null && dateto == "" && date == "") {
+            return billDao.findbypaymentAndstatus(payment, status);
         }
-            return billDao.findbydateAndpaymentAndstatus(date, dateto, payment, status);
+        return billDao.findbydateAndpaymentAndstatus(date, dateto, payment, status);
     }
 
 

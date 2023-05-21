@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 @RequestMapping("/Customer/CustomerController")
 public class CustomerController {
-	@Autowired
-	CustomerService customerService;
-	@Autowired
-	AccountService accountService;
+    @Autowired
+    CustomerService customerService;
+    @Autowired
+    AccountService accountService;
 
-	@GetMapping("/{id}")
-	@PreAuthorize("hasRole('ROLE_CUSTOMER')")
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<?> findByAccount(@PathVariable("id") Long id) {
         Customer customer = customerService.findByAccount(id);
         if (customer.getIsDelete() == true || customer.getAccount().getIsDelete() == true) {

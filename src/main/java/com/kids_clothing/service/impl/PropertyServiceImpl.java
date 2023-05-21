@@ -1,7 +1,7 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.repository.PropertyDao;
 import com.kids_clothing.entity.Property;
+import com.kids_clothing.repository.PropertyDao;
 import com.kids_clothing.service.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-	public List<Property> findAllByIsDeleteFalse() {
-		// TODO Auto-generated method stub
-		return propertyDao.findAllByIsDeleteFalse();
-	}
-    
+    public List<Property> findAllByIsDeleteFalse() {
+        // TODO Auto-generated method stub
+        return propertyDao.findAllByIsDeleteFalse();
+    }
+
     @Override
     @Transactional
     public List<Property> saveAll(List<Property> property) {

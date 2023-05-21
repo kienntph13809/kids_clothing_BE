@@ -36,24 +36,26 @@ public interface ProductDao extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p ORDER BY p.day_update DESC")
     List<Product> findByDayNewCreate();
 
-    @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name "  +
-                        "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name AS category_name, category.id " +
-                       "AS category_id, SUM(productdetail.quantity) AS quantity " +
-                       "FROM productdetail " +
-                        "JOIN product ON product.id = productdetail.idproduct " +
-                        "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
-                        "JOIN category ON categorydetail.idcategory = category.id "  +
-                      "WHERE product.name LIKE %:name% "  +
-                       "GROUP BY productdetail.idproduct", nativeQuery = true)
+    @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
+            "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name AS category_name, category.id " +
+            "AS category_id, SUM(productdetail.quantity) AS quantity " +
+            "FROM productdetail " +
+            "JOIN product ON product.id = productdetail.idproduct " +
+            "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
+            "JOIN category ON categorydetail.idcategory = category.id " +
+            "WHERE product.name LIKE %:name% " +
+            "GROUP BY productdetail.idproduct", nativeQuery = true)
     List<ProductRequest> findByNameLike(@Param("name") String name);
+
     @Query(value = "SELECT product.name,product.image,product.price, productdetail.idproduct,categorydetail.name " +
             "as categorydetail_name,categorydetail.id as categorydetail_id,\n" +
             "category.name AS category_name,category.id as category_id,\n" +
             "SUM(productdetail.quantity) as quantity FROM productdetail JOIN product \n" +
             "on product.id = productdetail.idproduct JOIN categorydetail on product.idcategorydetail = categorydetail.id\n" +
             "JOIN category ON categorydetail.idcategory = category.id\n" +
-            "GROUP BY productdetail.idproduct " , nativeQuery = true)
+            "GROUP BY productdetail.idproduct ", nativeQuery = true)
     List<ProductRequest> fillallproduc();
+
     @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
             "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name AS category_name, category.id " +
             "AS category_id, SUM(productdetail.quantity) AS quantity " +

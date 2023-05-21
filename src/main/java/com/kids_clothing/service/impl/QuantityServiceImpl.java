@@ -1,9 +1,9 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.repository.QuantityDao;
 import com.kids_clothing.entity.Product;
 import com.kids_clothing.entity.ProductDetail;
 import com.kids_clothing.model.request.CreateQuantityDto;
+import com.kids_clothing.repository.QuantityDao;
 import com.kids_clothing.service.service.QuantityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,11 +33,11 @@ public class QuantityServiceImpl implements QuantityService {
     }
 
     @Override
-	public List<ProductDetail> findAllByIsDeleteFalse() {
-		// TODO Auto-generated method stub
-		return quantityDao.findAllByIsDeleteFalse();
-	}
-    
+    public List<ProductDetail> findAllByIsDeleteFalse() {
+        // TODO Auto-generated method stub
+        return quantityDao.findAllByIsDeleteFalse();
+    }
+
     @Override
     public List<ProductDetail> createQty(CreateQuantityDto createQuantity) {
         List<ProductDetail> quantities = new ArrayList<>();

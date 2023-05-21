@@ -1,9 +1,9 @@
 package com.kids_clothing.vnpay;
 
-import com.kids_clothing.repository.CustomerDao;
-import com.kids_clothing.repository.MamiPayDao;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.entity.Mamipay;
+import com.kids_clothing.repository.CustomerDao;
+import com.kids_clothing.repository.MamiPayDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class MamipayServiceImpl implements MamiPayService {
     }
 
     @Override
-        public Mamipay ByCustomer(Long id) {
+    public Mamipay ByCustomer(Long id) {
         return mamiPayDao.BillByCustomer(id);
     }
 
