@@ -372,6 +372,7 @@ public class BillServiceImpl extends BaseController implements BillService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Không tìm thấy đơn hàng");
         });
 
+
         if (bill.getStatus() == EnumStatus.CHUA_XAC_NHAN) {
             bill.setStatus(EnumStatus.DA_XAC_NHAN_VA_DONG_GOI);
         } else {
@@ -396,9 +397,9 @@ public class BillServiceImpl extends BaseController implements BillService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message.toString());
         }
         quantityDao.saveAll(quantities);
-
         bill.setUpdateAts(new Date());
         return billDao.save(bill);
+
     }
 
     @Override

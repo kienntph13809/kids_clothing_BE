@@ -66,7 +66,7 @@ public class VnpIpnController {
                     }
                 }
                 return ResponseEntity.status(HttpStatus.FOUND)
-                        .location(URI.create("*account"))
+                        .location(URI.create("http://localhost:4200/account"))
                         .build();
             } else {
                 System.out.print("GD Khong thanh cong");

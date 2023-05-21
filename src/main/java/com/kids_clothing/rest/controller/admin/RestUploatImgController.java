@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin("*")
 @RequestMapping("/manager/image")
 public class RestUploatImgController {
 
