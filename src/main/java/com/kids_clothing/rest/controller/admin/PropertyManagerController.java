@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("*")
 @RequestMapping("/Manager/PropertyManagerController")
 public class PropertyManagerController {
     @Autowired

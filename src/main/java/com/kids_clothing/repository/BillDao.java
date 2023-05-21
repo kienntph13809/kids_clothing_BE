@@ -5,8 +5,10 @@ import com.kids_clothing.common.EnumStatus;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -77,4 +79,8 @@ public interface BillDao extends JpaRepository<Bill, String> {
     List<Bill> findbypaymentAndstatus(@Param("payment")  Integer payment,@Param("status") String status);
 
 
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("update Bill u set u.address = :addressNew where u.id =:idBill")
+    void updateAddressByBillId(@Param("addressNew") String addressNew,@Param("idBill") String idBill);
 }

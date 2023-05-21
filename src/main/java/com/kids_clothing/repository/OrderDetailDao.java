@@ -3,8 +3,11 @@ package com.kids_clothing.repository;
 import com.kids_clothing.common.EnumStatus;
 import com.kids_clothing.entity.Orderdetail;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -32,4 +35,11 @@ public interface OrderDetailDao extends JpaRepository<Orderdetail, Long> {
             " group by name " +
             " order by qty desc ")
     List<Object[]> getSumQtyProduct(Date start, Date end, EnumStatus status);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("update Orderdetail u set u.quantitydetail = :quantityNew where u.idbill = :idBill and  u.id =:idOrder")
+    void updateQuantitydetailByBillId(@Param("quantityNew") Long quantityNew, @Param("idBill") String idBill,@Param("idOrder") Long idOrder);
+
+
 }
