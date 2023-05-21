@@ -63,7 +63,21 @@ public interface BillDao extends JpaRepository<Bill, String> {
     List<Bill> findByStatus(@Param("status") String status);
 
     @Query(value = "SELECT * FROM Bill  WHERE payment  = :payment",nativeQuery = true)
-    List<Bill> findBypayment(@Param("payment") int payment);
+    List<Bill> findBypayment(@Param("payment") Integer payment);
+
+    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto",nativeQuery = true )
+    List<Bill> findBydate(@Param("date") String date,@Param("dateto") String dateto);
+      @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto  and status = :status",nativeQuery = true )
+    List<Bill> findBydateAndStatus(@Param("date") String date,@Param("dateto") String dateto,@Param("status") String status);
+     @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto  and payment = :payment",nativeQuery = true )
+    List<Bill> findBydateAndpayment(@Param("date") String date,@Param("dateto") String dateto,@Param("payment") Integer payment);
+
+    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto and payment = :payment and status = :status",nativeQuery = true)
+    List<Bill> findbydateAndpaymentAndstatus(@Param("date") String date,@Param("dateto")String dateto,@Param("payment")  Integer payment,@Param("status") String status);
+
+    @Query(value = "SELECT * FROM bill WHERE (TRIM(:payment) is null or payment = :payment) and (TRIM(:status) is null or status =:status)",nativeQuery = true)
+    List<Bill> findbypaymentAndstatus(@Param("payment")  Integer payment,@Param("status") String status);
+
 
     @Transactional
     @Modifying(clearAutomatically = true)

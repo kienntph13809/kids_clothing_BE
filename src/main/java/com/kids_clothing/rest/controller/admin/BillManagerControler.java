@@ -141,5 +141,19 @@ public class BillManagerControler {
     public ResponseEntity<Res> findpayment(@RequestParam("name") int name) {
         return ResponseEntity.ok(new Res(billService.findbypayment(name), "thành công", true));
     }
+ @GetMapping("/findby_date_and_payment_and_status")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findby_date_and_payment_and_status(@RequestParam("date") String date,@RequestParam("dateto") String dateto,@RequestParam("payment") String paymentStr,@RequestParam("status") String status) {
+     Integer payment = null;
+     if (paymentStr != null && !paymentStr.isEmpty()) {
+         try {
+             payment = Integer.parseInt(paymentStr);
+         } catch (NumberFormatException e) {
+             // Handle invalid format
+             return ResponseEntity.badRequest().body(new Res(null, "Invalid payment value", false));
+         }
+     }
+        return ResponseEntity.ok(new Res(billService.findByDateAndpaymentAndstatus(date,dateto,payment,status), "thành công", true));
+    }
 
 }

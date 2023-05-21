@@ -1,15 +1,16 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.model.request.ProductRequest;
-import com.kids_clothing.repository.ProductDao;
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.entity.Product;
+import com.kids_clothing.model.request.ProductRequest;
+import com.kids_clothing.repository.ProductDao;
 import com.kids_clothing.service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findAll();
     }
 
+
     @Override
     public List<Product> findAllByIsDeleteFalse() {
         return productDao.findAllByIsDeleteFalse();
@@ -50,6 +52,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductRequest> findPriceProduct(String minPrice, String maxPrice, String name) {
+        try {
+            if (Objects.equals(minPrice, "") && Objects.equals(maxPrice, "") && Objects.equals(name, "")) {
+                return productDao.fillallproduc();
+            }
+            if (Objects.equals(minPrice, "") && Objects.equals(maxPrice, "")) {
+                return productDao.findByNameLike(name);
+            }
+            return productDao.findPriceProduct(minPrice, maxPrice, name);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Product findById(Long id) {
         // TODO Auto-generated method stub
         return productDao.findById(id).get();
@@ -62,11 +80,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-	public List<Product> findByNameLike(String name) {
-		// TODO Auto-generated method stub
+    public List<ProductRequest> findByNameLike(String name) {
+        // TODO Auto-generated method stub
         return productDao.findByNameLike(name);
-	}
-    
+    }
+
     @Override
     @Transactional
     public <S extends Product> List<S> saveAll(Iterable<S> entities) {

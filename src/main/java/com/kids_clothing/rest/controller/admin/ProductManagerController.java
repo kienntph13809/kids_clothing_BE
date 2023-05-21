@@ -61,7 +61,7 @@ public class ProductManagerController {
                 UUID uuid = UUID.randomUUID();
                 filename = uuid.toString() + ".jpg";
                 Files.copy(file.getInputStream(), this.root.resolve(filename));
-                product.setImage("http://localhost:8080/manager/image/get/"+ filename);
+                product.setImage("http://localhost:8080/manager/image/get/" + filename);
             }
             product.setIsDelete(false);
             Product entity = productService.saveAndFlush(product);
@@ -84,16 +84,34 @@ public class ProductManagerController {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+
     @GetMapping("/findByDayNewCreate")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByDayNewCreate() {
         List<Product> entity = productService.findByDayNewCreate();
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
+
     @GetMapping("/findAllproduc")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findAllproduc() {
         List<ProductRequest> entity = productService.fillallproduc();
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
+
+    @GetMapping("/findPriceProduc")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> findPriceProduc(@RequestParam(required = false) String minPrice,
+                                             @RequestParam(required = false) String maxPrice,
+                                             @RequestParam(required = false) String name
+    ) {
+        return ResponseEntity.ok(new Res(productService.findPriceProduct(minPrice, maxPrice, name),"Success", true));
     }
+
+    @GetMapping("/findby_name")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {
+        return ResponseEntity.ok(new Res(productService.findByNameLike(name), "thành công", true));
+    }
+
+}

@@ -584,5 +584,34 @@ public class BillServiceImpl extends BaseController implements BillService {
         return billDao.findBypayment(payment);
     }
 
+    @Override
+    public List<Bill> findByDateAndpaymentAndstatus(String date, String dateto, Integer payment, String status) {
+        if (date != "" && dateto != "" && status == "" && payment == null ){
+            return billDao.findBydate(date, dateto);
+        }
+        if (date == "" && dateto == "" && status != "" && payment == null ){
+            return billDao.findByStatus(status);
+        }
+        if (date != "" && dateto != "" && status == "" && payment != null ){
+            return billDao.findBydateAndpayment(date, dateto,payment);
+        }
+        if (date == "" && dateto == "" && status != "" && payment == null ){
+            return billDao.findByStatus(status);
+        }
+        if (date != "" && dateto != "" && status == "" && payment == null ){
+            return billDao.findBydate(date, dateto);
+        }
+        if (date != null && dateto != null && status != "" && payment == null ){
+            return billDao.findBydateAndStatus(date, dateto,status);
+        }
+        if (date == "" && dateto == "" && status  == "" && payment != null ){
+            return billDao.findBypayment(payment);
+        }
+        if (status != "" && payment != null && dateto == "" && date == ""){
+            return billDao.findbypaymentAndstatus(payment,status);
+        }
+            return billDao.findbydateAndpaymentAndstatus(date, dateto, payment, status);
+    }
+
 
 }

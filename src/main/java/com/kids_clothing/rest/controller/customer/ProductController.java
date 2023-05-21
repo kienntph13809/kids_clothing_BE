@@ -2,6 +2,7 @@ package com.kids_clothing.rest.controller.customer;
 
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.entity.Product;
+import com.kids_clothing.model.request.ProductRequest;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.CategoryDetailService;
 import com.kids_clothing.service.service.ImageService;
@@ -58,7 +59,7 @@ public class ProductController {
 
     @GetMapping("/findByNameLike/{name}")
     public ResponseEntity<?> findByNameLike(@PathVariable("name") String name){
-        List<Product> entity = productService.findByNameLike(name);
+        List<ProductRequest> entity = productService.findByNameLike(name);
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
 }

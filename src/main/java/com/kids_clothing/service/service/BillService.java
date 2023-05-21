@@ -50,4 +50,6 @@ public interface BillService {
 
     List<Bill>findbyID(String id);
     List<Bill>findbypayment(int payment);
+    List<Bill>findByDateAndpaymentAndstatus(String  date,String dateto,Integer  payment,String status);
+
 }
