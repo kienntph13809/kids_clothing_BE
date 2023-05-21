@@ -60,13 +60,5 @@ public class OrderDetailController {
 
     }
 
-    @PostMapping("/update_address/{idBill}/{addressNew}")
-    public ResponseEntity<?> delete( @PathVariable("addressNew") String addressNew,
-                                            @PathVariable("idBill") String idBill) {
-        billDao.updateAddressByBillId(addressNew,idBill);
-        System.out.println(addressNew);
-        return ResponseEntity.ok(new Res("update oK",true));
-
-    }
 
 }
