@@ -202,13 +202,14 @@ public class BillServiceImpl extends BaseController implements BillService {
         }
         // danh sách chi tiết đơn hàng
         List<Orderdetail> orderdetails = new ArrayList<>();
-
+        List<ProductDetail> quantities = new ArrayList<>();
         List<QuantityRequest> quantityRequests = billDto.getList_quantity();
         for (QuantityRequest qty : quantityRequests) {
             ProductDetail productDetail = quantityDao.findById(qty.getId_quantity()).
                     orElseThrow(() -> new RuntimeException("Lỗi thêm sản phẩm"));
             Product product = objectMapper.convertValue(productDetail.getProduct(), Product.class);
             StringBuilder message = new StringBuilder();
+            System.out.println("haha" + qty.getBill_quantity());
             if (productDetail.getQuantity() < qty.getBill_quantity()) {
                 String er = "Sản phẩm: " + productDetail.getProduct().getName()
                         + " Size: " + productDetail.getSize().getName() + "-" + productDetail.getProperty().getName()
@@ -226,8 +227,11 @@ public class BillServiceImpl extends BaseController implements BillService {
             orderdetail.setIntomoney(product.getPrice() - orderdetail.getDownprice());
             orderdetail.setIdbill(bill.getId());
             orderdetail.setCreateAt(new Date());
-
             orderdetails.add(orderdetail);
+            productDetail.setQuantity(productDetail.getQuantity() - qty.getBill_quantity());
+            quantities.add(productDetail);
+            quantityDao.saveAll(quantities);
+
         }
         if (!billDto.getPayment()) {
             //không thanh toán qua ví
@@ -236,10 +240,14 @@ public class BillServiceImpl extends BaseController implements BillService {
         }
         billDao.save(bill);
         orderDetailDao.saveAll(orderdetails);
+        bill.setUpdateAts(new Date());
+         billDao.save(bill);
+
         if (customer.getAccount().getEmail() != null) {
             mailService.sendCreateBill(customer.getAccount(), bill);
             System.out.println("gui mail roi nha");
         }
+
         return bill;
     }
 
@@ -399,6 +407,8 @@ public class BillServiceImpl extends BaseController implements BillService {
         quantityDao.saveAll(quantities);
         bill.setUpdateAts(new Date());
         return billDao.save(bill);
+
+
 
     }
 
