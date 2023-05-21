@@ -28,7 +28,7 @@ public interface CategoryDetailDao extends JpaRepository<Categorydetail, Long> {
     @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
             "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name " +
             "AS category_name, category.id AS category_id, " +
-            "SUM(productdetail.quantity) AS quantity " +
+            "SUM(productdetail.quantity) AS quantity" +
             "FROM productdetail JOIN product ON product.id = productdetail.idproduct " +
             "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
             "JOIN category ON categorydetail.idcategory = category.id " +

@@ -10,4 +10,7 @@ public interface ProductRequest {
     String getcategory_name();
     String getcategory_id();
     String getquantity();
+    String getdescription();
+    String getdescription_detail();
+    String getdiscount();
 }

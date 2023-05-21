@@ -31,6 +31,7 @@ public class ProductDetailController {
         List<ProductDetail> entity = productDetailService.findByIdProduct(idProduct);
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
+    
 
 
 }

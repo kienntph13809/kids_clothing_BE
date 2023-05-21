@@ -52,15 +52,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductRequest> findPriceProduct(String minPrice, String maxPrice, String name) {
+    public List<ProductRequest> findPriceProduct(String minPrice, String maxPrice, String name ,String nameCate) {
         try {
-            if (Objects.equals(minPrice, "") && Objects.equals(maxPrice, "") && Objects.equals(name, "")) {
+            if (Objects.equals(minPrice, "") && Objects.equals(maxPrice, "") && Objects.equals(name, "") && Objects.equals(nameCate, "")) {
                 return productDao.fillallproduc();
             }
             if (Objects.equals(minPrice, "") && Objects.equals(maxPrice, "")) {
-                return productDao.findByNameLike(name);
+                return productDao.findByDropdownAndName(nameCate,name);
             }
-            return productDao.findPriceProduct(minPrice, maxPrice, name);
+            if (Objects.equals(name, "") && Objects.equals(minPrice, "") && Objects.equals(maxPrice, "")){
+                return productDao.findByDropdown(nameCate);
+            }
+            return productDao.findPriceProduct(minPrice, maxPrice, name , nameCate);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

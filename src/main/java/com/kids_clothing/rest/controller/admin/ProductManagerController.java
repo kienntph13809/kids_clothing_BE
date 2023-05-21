@@ -103,9 +103,10 @@ public class ProductManagerController {
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findPriceProduc(@RequestParam(required = false) String minPrice,
                                              @RequestParam(required = false) String maxPrice,
-                                             @RequestParam(required = false) String name
+                                             @RequestParam(required = false) String name,
+                                             @RequestParam(required = false) String nameCate
     ) {
-        return ResponseEntity.ok(new Res(productService.findPriceProduct(minPrice, maxPrice, name),"Success", true));
+        return ResponseEntity.ok(new Res(productService.findPriceProduct(minPrice, maxPrice, name,nameCate),"Success", true));
     }
 
     @GetMapping("/findby_name")
