@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/Manager/AccountManagerController")
 public class AccountManagerController {
@@ -140,7 +140,6 @@ public class AccountManagerController {
     @GetMapping("/findByPhone/{phone}")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findbyname(@PathVariable("phone") String name) {
-        System.out.println(name+"=====================");
         return ResponseEntity.ok(new Res(accountService.findByname(name), "thành công", true));
     }
 
