@@ -41,5 +41,4 @@ public interface OrderDetailDao extends JpaRepository<Orderdetail, Long> {
     @Query("update Orderdetail u set u.quantitydetail = :quantityNew where u.idbill = :idBill and  u.id =:idOrder")
     void updateQuantitydetailByBillId(@Param("quantityNew") Long quantityNew, @Param("idBill") String idBill,@Param("idOrder") Long idOrder);
 
-
 }
