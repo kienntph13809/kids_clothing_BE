@@ -1,5 +1,6 @@
 package com.kids_clothing.service.impl;
 
+import com.kids_clothing.model.request.ProductRequest;
 import com.kids_clothing.repository.CategoryDetailDao;
 import com.kids_clothing.entity.Categorydetail;
 import com.kids_clothing.service.service.CategoryDetailService;
@@ -33,7 +34,11 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
         // TODO Auto-generated method stub
         return categoryDetailDao.findById(id);
     }
-
+    @Override
+    public List<ProductRequest> findByDropdown(String name) {
+        // TODO Auto-generated method stub
+        return categoryDetailDao.findByDropdown(name);
+    }
     @Override
     @Transactional
     public Categorydetail saveAndFlush(Categorydetail categoryDetail) {
@@ -62,10 +67,7 @@ public class CategoryDetailServiceImpl implements CategoryDetailService {
         categoryDetailDao.deleteInBatch(categoryDetail);
     }
 
-    @Override
-    public Categorydetail findByIds(Long id) {
-        return null;
-    }
+
 
     public List<Categorydetail> getAllListDetailCategory() {
         return categoryDetailDao.listCategoryDetailIsDeleteFalse();

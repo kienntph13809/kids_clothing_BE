@@ -57,7 +57,17 @@ public class CategoryDetailManagerController {
             return ResponseEntity.ok(new Res("Không thấy sản phẩm,Sản phẩm không tồn tại", false));
         }
     }
-
+    @GetMapping(value = "findByDropdown")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> findByDropdown(@RequestParam("name") String name) {
+        System.out.println(name);
+        try {
+            return ResponseEntity.ok(new Res(categoryDetailService.findByDropdown(name), "Sản Phẩm tìm kiếm", true));
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.ok(new Res("Không thấy sản phẩm,Sản phẩm không tồn tại", false));
+        }
+    }
     @PostMapping(value = "/update/{id}")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody CategoryDetailResquest categoryDetailRequest) {
