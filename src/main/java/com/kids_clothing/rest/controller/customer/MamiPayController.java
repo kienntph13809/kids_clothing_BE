@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Customer/MamiPayController")
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("*")
 public class MamiPayController extends BaseController {
 
     @Autowired
