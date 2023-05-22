@@ -8,4 +8,7 @@ public interface AuthorityService {
 	List<Authority> findAllByIsDeleteFalse();
 
 	List<Authority> saveAll(List<Authority> authority);
+
+
+
 }

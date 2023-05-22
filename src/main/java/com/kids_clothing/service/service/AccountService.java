@@ -4,6 +4,7 @@ import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.model.request.AccountDto;
 import com.kids_clothing.model.request.CustomerDto;
+import com.kids_clothing.model.request.requestAccount;
 import com.kids_clothing.model.response.CustomerResponse;
 
 import java.util.List;
@@ -25,5 +26,7 @@ public interface AccountService {
 
     List<CustomerResponse> findByPhone(CustomerDto accountDto);
     List<Account> findByname(String name);
+
+    List<requestAccount> findAllAdmin();
 
 }
