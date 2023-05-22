@@ -2,10 +2,10 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kids_clothing.common.EnumRefund;
-import com.kids_clothing.repository.BillDao;
 import com.kids_clothing.entity.Bill;
 import com.kids_clothing.model.request.ShipingRequest;
 import com.kids_clothing.model.response.Res;
+import com.kids_clothing.repository.BillDao;
 import com.kids_clothing.service.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -121,39 +121,45 @@ public class BillManagerControler {
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
+
     @GetMapping("/findByDayNewCreate")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findByDayNewCreate() {
         List<Bill> entity = billService.findByDayNewCreate();
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
+
     @GetMapping("/findby_status")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Res> findstatus(@RequestParam("name") String name) {
         return ResponseEntity.ok(new Res(billService.findBystatus(name), "thành công", true));
-    } @GetMapping("/findby_statusshiping")
+    }
+
+    @GetMapping("/findby_statusshiping")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Res> findstatusshiping(@RequestParam("name") String name) {
         return ResponseEntity.ok(new Res(billService.findBystatusshipping(name), "thành công", true));
     }
+
     @GetMapping("/findby_payment")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Res> findpayment(@RequestParam("name") int name) {
         return ResponseEntity.ok(new Res(billService.findbypayment(name), "thành công", true));
     }
- @GetMapping("/findby_date_and_payment_and_status")
+
+    @GetMapping("/findby_date_and_payment_and_status")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
-    public ResponseEntity<Res> findby_date_and_payment_and_status(@RequestParam("date") String date,@RequestParam("dateto") String dateto,@RequestParam("payment") String paymentStr,@RequestParam("status") String status) {
-     Integer payment = null;
-     if (paymentStr != null && !paymentStr.isEmpty()) {
-         try {
-             payment = Integer.parseInt(paymentStr);
-         } catch (NumberFormatException e) {
-             // Handle invalid format
-             return ResponseEntity.badRequest().body(new Res(null, "Invalid payment value", false));
-         }
-     }
-        return ResponseEntity.ok(new Res(billService.findByDateAndpaymentAndstatus(date,dateto,payment,status), "thành công", true));
+    public ResponseEntity<Res> findby_date_and_payment_and_status(@RequestParam("date") String date, @RequestParam("dateto") String dateto, @RequestParam("payment") String paymentStr, @RequestParam("status") String status) {
+        Integer payment = null;
+        if (paymentStr != null && !paymentStr.isEmpty()) {
+            try {
+                payment = Integer.parseInt(paymentStr);
+            } catch (NumberFormatException e) {
+                // Handle invalid format
+                return ResponseEntity.badRequest().body(new Res(null, "Invalid payment value", false));
+            }
+        }
+        return ResponseEntity.ok(new Res(billService.findByDateAndpaymentAndstatus(date, dateto, payment, status), "thành công", true));
     }
 
 }

@@ -1,9 +1,8 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.repository.TyperSizeDao;
 import com.kids_clothing.entity.Typesize;
-
 import com.kids_clothing.model.request.TypeSizeRequest;
+import com.kids_clothing.repository.TyperSizeDao;
 import com.kids_clothing.service.service.TypeSizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,15 +21,15 @@ public class TypeSizeServiceImpl implements TypeSizeService {
     @Override
     public List<Typesize> findAll() {
         // TODO Auto-generated method stub
-		return typeSizeDao.findAll();
+        return typeSizeDao.findAll();
     }
 
     @Override
-	public List<Typesize> findAllByIsDeleteFalse() {
-		// TODO Auto-generated method stub
-		return typeSizeDao.findAllByIsDeleteFalse();
-	}
-    
+    public List<Typesize> findAllByIsDeleteFalse() {
+        // TODO Auto-generated method stub
+        return typeSizeDao.findAllByIsDeleteFalse();
+    }
+
     @Override
     public Optional<Typesize> findById(Long id) {
         // TODO Auto-generated method stub

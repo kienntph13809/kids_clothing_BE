@@ -1,8 +1,8 @@
 package com.kids_clothing.vnpay;
 
-import com.kids_clothing.repository.CustomerDao;
 import com.kids_clothing.entity.History;
 import com.kids_clothing.entity.Mamipay;
+import com.kids_clothing.repository.CustomerDao;
 import com.kids_clothing.service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,7 +66,7 @@ public class VnpIpnController {
                     }
                 }
                 return ResponseEntity.status(HttpStatus.FOUND)
-                        .location(URI.create("*account"))
+                        .location(URI.create("http://localhost:4200/account"))
                         .build();
             } else {
                 System.out.print("GD Khong thanh cong");

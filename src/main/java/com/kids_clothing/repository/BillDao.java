@@ -2,7 +2,6 @@ package com.kids_clothing.repository;
 
 import com.kids_clothing.common.EnumRefund;
 import com.kids_clothing.common.EnumStatus;
-import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -57,30 +56,34 @@ public interface BillDao extends JpaRepository<Bill, String> {
 
     @Query("SELECT b FROM Bill b ORDER BY b.createAt DESC")
     List<Bill> findByDayNewCreate();
+
     @Query("SELECT b FROM Bill b WHERE b.statusshipping =:statusshipping")
     List<Bill> findBystatusshipping(@Param("statusshipping") String statusshipping);
-    @Query(value = "SELECT * FROM Bill  WHERE status = :status",nativeQuery = true)
+
+    @Query(value = "SELECT * FROM Bill  WHERE status = :status", nativeQuery = true)
     List<Bill> findByStatus(@Param("status") String status);
 
-    @Query(value = "SELECT * FROM Bill  WHERE payment  = :payment",nativeQuery = true)
+    @Query(value = "SELECT * FROM Bill  WHERE payment  = :payment", nativeQuery = true)
     List<Bill> findBypayment(@Param("payment") Integer payment);
 
-    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto",nativeQuery = true )
-    List<Bill> findBydate(@Param("date") String date,@Param("dateto") String dateto);
-      @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto  and status = :status",nativeQuery = true )
-    List<Bill> findBydateAndStatus(@Param("date") String date,@Param("dateto") String dateto,@Param("status") String status);
-     @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto  and payment = :payment",nativeQuery = true )
-    List<Bill> findBydateAndpayment(@Param("date") String date,@Param("dateto") String dateto,@Param("payment") Integer payment);
+    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto", nativeQuery = true)
+    List<Bill> findBydate(@Param("date") String date, @Param("dateto") String dateto);
 
-    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto and payment = :payment and status = :status",nativeQuery = true)
-    List<Bill> findbydateAndpaymentAndstatus(@Param("date") String date,@Param("dateto")String dateto,@Param("payment")  Integer payment,@Param("status") String status);
+    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto  and status = :status", nativeQuery = true)
+    List<Bill> findBydateAndStatus(@Param("date") String date, @Param("dateto") String dateto, @Param("status") String status);
 
-    @Query(value = "SELECT * FROM bill WHERE (TRIM(:payment) is null or payment = :payment) and (TRIM(:status) is null or status =:status)",nativeQuery = true)
-    List<Bill> findbypaymentAndstatus(@Param("payment")  Integer payment,@Param("status") String status);
+    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto  and payment = :payment", nativeQuery = true)
+    List<Bill> findBydateAndpayment(@Param("date") String date, @Param("dateto") String dateto, @Param("payment") Integer payment);
+
+    @Query(value = "SELECT * FROM bill WHERE create_at BETWEEN :date AND :dateto and payment = :payment and status = :status", nativeQuery = true)
+    List<Bill> findbydateAndpaymentAndstatus(@Param("date") String date, @Param("dateto") String dateto, @Param("payment") Integer payment, @Param("status") String status);
+
+    @Query(value = "SELECT * FROM bill WHERE (TRIM(:payment) is null or payment = :payment) and (TRIM(:status) is null or status =:status)", nativeQuery = true)
+    List<Bill> findbypaymentAndstatus(@Param("payment") Integer payment, @Param("status") String status);
 
 
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query("update Bill u set u.address = :addressNew where u.id =:idBill")
-    void updateAddressByBillId(@Param("addressNew") String addressNew,@Param("idBill") String idBill);
+    void updateAddressByBillId(@Param("addressNew") String addressNew, @Param("idBill") String idBill);
 }

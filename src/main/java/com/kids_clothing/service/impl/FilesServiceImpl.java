@@ -1,8 +1,8 @@
 package com.kids_clothing.service.impl;
 
 
-import com.kids_clothing.repository.ImageDao;
 import com.kids_clothing.entity.Image;
+import com.kids_clothing.repository.ImageDao;
 import com.kids_clothing.service.service.FilesSerivce;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -31,7 +31,8 @@ public class FilesServiceImpl implements FilesSerivce {
     private final Path root = Paths.get("severImg");
 
     @Autowired
-    ImageDao imgDao;;
+    ImageDao imgDao;
+    ;
 
     @Override
     public void init() {
@@ -46,6 +47,7 @@ public class FilesServiceImpl implements FilesSerivce {
             throw new RuntimeException("Không thể khởi tạo thư mục để tải ảnh lên!");
         }
     }
+
     //luu anh
     @Override
     public void save(MultipartFile file, Image img) {

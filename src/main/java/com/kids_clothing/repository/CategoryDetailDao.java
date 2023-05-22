@@ -15,7 +15,7 @@ public interface CategoryDetailDao extends JpaRepository<Categorydetail, Long> {
     List<Categorydetail> listCategoryDetailById(Long id);
 
     List<Categorydetail> findAll();
-    
+
     List<Categorydetail> findAllByIsDeleteFalse();
 
     Optional<Categorydetail> findById(Long id);

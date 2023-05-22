@@ -1,10 +1,10 @@
 package com.kids_clothing.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.repository.SizeDao;
 import com.kids_clothing.entity.Size;
 import com.kids_clothing.entity.Typesize;
 import com.kids_clothing.model.request.SizeRequest;
+import com.kids_clothing.repository.SizeDao;
 import com.kids_clothing.service.service.SizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,11 +31,11 @@ public class SizeServiceImpl implements SizeService {
     }
 
     @Override
-	public List<Size> findAllByIsDeleteFalse() {
-		// TODO Auto-generated method stub
-		return sizeDao.findAllByIsDeleteFalse();
-	}
-    
+    public List<Size> findAllByIsDeleteFalse() {
+        // TODO Auto-generated method stub
+        return sizeDao.findAllByIsDeleteFalse();
+    }
+
     @Override
     public List<Size> findByTypeSize(Typesize typeSize) {
         // TODO Auto-generated method stub

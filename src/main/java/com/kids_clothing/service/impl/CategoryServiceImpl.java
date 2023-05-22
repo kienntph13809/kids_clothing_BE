@@ -1,7 +1,7 @@
 package com.kids_clothing.service.impl;
 
-import com.kids_clothing.repository.CategoryDao;
 import com.kids_clothing.entity.Category;
+import com.kids_clothing.repository.CategoryDao;
 import com.kids_clothing.service.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,12 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> findAll() {
         return categoryDao.findAllByIsDeleteFalse();
     }
-    
+
     @Override
-	public List<Category> findAllByIsDeleteFalse() {
-		// TODO Auto-generated method stub
-		return categoryDao.findAllByIsDeleteFalse();
-	}
+    public List<Category> findAllByIsDeleteFalse() {
+        // TODO Auto-generated method stub
+        return categoryDao.findAllByIsDeleteFalse();
+    }
 
     @Override
     @Transactional

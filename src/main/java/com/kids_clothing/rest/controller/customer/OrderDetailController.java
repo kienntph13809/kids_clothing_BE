@@ -1,5 +1,6 @@
 package com.kids_clothing.rest.controller.customer;
 
+import com.kids_clothing.entity.Bill;
 import com.kids_clothing.entity.Orderdetail;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.repository.BillDao;
@@ -47,20 +48,27 @@ public class OrderDetailController {
     public ResponseEntity<?> updateQuantity(@PathVariable("idbill") String idbill,
                                             @PathVariable("newQuantity") Long newQuantity,
                                             @PathVariable("idOrder") Long idOrder) {
-      Optional<Orderdetail> opOrder =  orderDetailDao.findById(idOrder);
-      Orderdetail order = opOrder.get();
-      order.setDownprice(Double.valueOf(1111));
-        orderDetailDao.updateQuantitydetailByBillId(newQuantity,idbill,idOrder);
-        return ResponseEntity.ok(new Res(orderDetailDao.getListOrderDetail(idbill),"update oK",true));
+        Optional<Bill> bill = billDao.findById(idbill);
+        Optional<Orderdetail> orderdetail = orderDetailDao.findById(idOrder);
+        Bill billGet = bill.get();
+        Orderdetail orderDetail = orderdetail.get();
+        Double giaThem = ((newQuantity - orderDetail.getQuantitydetail()) * orderDetail.getIntomoney());
+        Double tong = billGet.getDowntotal() + giaThem;
+        billGet.setDowntotal(tong);
+        billDao.save(billGet);
+        billGet.setTotal((billGet.getDowntotal() - billGet.getTransportFee()));
+        billDao.save(billGet);
+        orderDetailDao.updateQuantitydetailByBillId(newQuantity, idbill, idOrder);
+        return ResponseEntity.ok(new Res(orderDetailDao.getListOrderDetail(idbill), "update oK", true));
 
     }
 
     @PostMapping("/update_address/{idBill}/{addressNew}")
-    public ResponseEntity<?> updateAddress( @PathVariable("addressNew") String addressNew,
-                                            @PathVariable("idBill") String idBill) {
-        billDao.updateAddressByBillId(addressNew,idBill);
+    public ResponseEntity<?> updateAddress(@PathVariable("addressNew") String addressNew,
+                                           @PathVariable("idBill") String idBill) {
+        billDao.updateAddressByBillId(addressNew, idBill);
         System.out.println(addressNew);
-        return ResponseEntity.ok(new Res("update oK",true));
+        return ResponseEntity.ok(new Res("update oK", true));
 
     }
 

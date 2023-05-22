@@ -47,7 +47,7 @@ public class Bill implements Serializable {
 
     private Double total;//thanh toán
 
-     private String sale_point;//điểm bán hàng
+    private String sale_point;//điểm bán hàng
 
     @Length(max = 1000)
     private String address;//địa chỉ

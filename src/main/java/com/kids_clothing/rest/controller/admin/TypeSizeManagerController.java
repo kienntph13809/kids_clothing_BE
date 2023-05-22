@@ -2,7 +2,6 @@ package com.kids_clothing.rest.controller.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kids_clothing.entity.Typesize;
-
 import com.kids_clothing.model.request.TypeSizeRequest;
 import com.kids_clothing.model.response.Res;
 import com.kids_clothing.service.service.TypeSizeService;
@@ -86,6 +85,7 @@ public class TypeSizeManagerController {
     public ResponseEntity<Res> deleteTypeSize(@PathVariable("id") Long id) {
         return ResponseEntity.ok(new Res(typeSizeService.delete(id), "Thêm thành công", true));
     }
+
     @GetMapping("/findby_name/{name}")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Res> findbyname(@PathVariable String name) {

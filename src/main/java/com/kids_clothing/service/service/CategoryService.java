@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CategoryService {
     List<Category> findAll();
-    
+
     List<Category> findAllByIsDeleteFalse();
 
     List<Category> getAllListCategory();

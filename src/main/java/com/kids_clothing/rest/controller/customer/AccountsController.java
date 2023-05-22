@@ -1,13 +1,13 @@
 package com.kids_clothing.rest.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kids_clothing.repository.AccountDao;
-import com.kids_clothing.repository.CustomerDao;
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.entity.Customer;
 import com.kids_clothing.model.request.ChangeAccountDto;
 import com.kids_clothing.model.request.SignupRequest;
 import com.kids_clothing.model.response.Res;
+import com.kids_clothing.repository.AccountDao;
+import com.kids_clothing.repository.CustomerDao;
 import com.kids_clothing.service.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +39,7 @@ public class AccountsController {
         List<Account> account = accountService.findAllByIsDeleteFalse();
         return ResponseEntity.ok(new Res(account, "dat", true));
     }
-   
+
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_CUSTOMER') or hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Res> getDetail(@PathVariable("id") Long id) {
@@ -73,24 +73,25 @@ public class AccountsController {
         Account account = accountService.save(ac);
         return ResponseEntity.ok(new Res(account, "xóa thành công", true));
     }
-    
+
     @PostMapping("/UpdateAccount")
-    public ResponseEntity<?> saveAccount(@RequestBody ChangeAccountDto dto){
-    	Customer customer = customerDAO.findByIdaccount(dto.getId());
-    	Account account = accountService.findById(dto.getId());
-    	if(customer != null) {
-    		customer.setFullname(dto.getFullname());
+    public ResponseEntity<?> saveAccount(@RequestBody ChangeAccountDto dto) {
+        Customer customer = customerDAO.findByIdaccount(dto.getId());
+        Account account = accountService.findById(dto.getId());
+        if (customer != null) {
+            customer.setFullname(dto.getFullname());
             customer.setAddress(dto.getAddress());
-    		customerDAO.saveAndFlush(customer);
-    	}
-    	if(account != null) {
-    		account.setEmail(dto.getEmail());
-    		account.setUsername(dto.getUsername());
-    		account.setPhone(dto.getSdt());
-    		accountDAO.saveAndFlush(account);
-    	}
-    	return ResponseEntity.ok(new Res(null,"Save success",true));
+            customerDAO.saveAndFlush(customer);
+        }
+        if (account != null) {
+            account.setEmail(dto.getEmail());
+            account.setUsername(dto.getUsername());
+            account.setPhone(dto.getSdt());
+            accountDAO.saveAndFlush(account);
+        }
+        return ResponseEntity.ok(new Res(null, "Save success", true));
     }
+
     @GetMapping("/findby_name")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<Res> findbyname(@RequestParam("name") String name) {

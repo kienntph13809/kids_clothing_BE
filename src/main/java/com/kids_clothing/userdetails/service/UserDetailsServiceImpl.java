@@ -1,7 +1,7 @@
 package com.kids_clothing.userdetails.service;
 
-import com.kids_clothing.repository.AccountDao;
 import com.kids_clothing.entity.Account;
+import com.kids_clothing.repository.AccountDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

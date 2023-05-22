@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CategoryDetailService {
     List<Categorydetail> findAll();
-    
+
     List<Categorydetail> findAllByIsDeleteFalse();
 
     Optional<Categorydetail> findById(Long id);

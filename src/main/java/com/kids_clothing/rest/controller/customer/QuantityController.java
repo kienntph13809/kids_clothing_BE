@@ -17,20 +17,21 @@ import java.util.Optional;
 @RequestMapping("/Customer/QuantityController")
 public class QuantityController {
 
-	@Autowired
-	QuantityService quantityService;
-	@Autowired
-	ProductService productService;
-	
-	@GetMapping("/findAllByIsDeleteFalse")
-	public ResponseEntity<?> findAll(){
-		return ResponseEntity.ok(new Res(quantityService.findAllByIsDeleteFalse(),"success",true));
-	}
-	@GetMapping("/findQuantityByProduct/{id}")
-	public ResponseEntity<?> findQuantityByProduct(@PathVariable("id") Long id){
-		Optional<Product> product = Optional.ofNullable(productService.findById(id));
-		List<ProductDetail> list = quantityService.findByProduct(product.get());
-		return ResponseEntity.ok(new Res(list,"success",true));
-	}
+    @Autowired
+    QuantityService quantityService;
+    @Autowired
+    ProductService productService;
+
+    @GetMapping("/findAllByIsDeleteFalse")
+    public ResponseEntity<?> findAll() {
+        return ResponseEntity.ok(new Res(quantityService.findAllByIsDeleteFalse(), "success", true));
+    }
+
+    @GetMapping("/findQuantityByProduct/{id}")
+    public ResponseEntity<?> findQuantityByProduct(@PathVariable("id") Long id) {
+        Optional<Product> product = Optional.ofNullable(productService.findById(id));
+        List<ProductDetail> list = quantityService.findByProduct(product.get());
+        return ResponseEntity.ok(new Res(list, "success", true));
+    }
 
 }

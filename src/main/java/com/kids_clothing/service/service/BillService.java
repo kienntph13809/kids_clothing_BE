@@ -44,12 +44,17 @@ public interface BillService {
     List<BillShiping> getShipingBillCustomer(String idBill) throws IOException;
 
     List<String> getAddress();
-    List<Bill> findByDayNewCreate();
-    List<Bill> findBystatus(String status);
-    List<Bill> findBystatusshipping( String statusshipping );
 
-    List<Bill>findbyID(String id);
-    List<Bill>findbypayment(int payment);
-    List<Bill>findByDateAndpaymentAndstatus(String  date,String dateto,Integer  payment,String status);
+    List<Bill> findByDayNewCreate();
+
+    List<Bill> findBystatus(String status);
+
+    List<Bill> findBystatusshipping(String statusshipping);
+
+    List<Bill> findbyID(String id);
+
+    List<Bill> findbypayment(int payment);
+
+    List<Bill> findByDateAndpaymentAndstatus(String date, String dateto, Integer payment, String status);
 
 }
