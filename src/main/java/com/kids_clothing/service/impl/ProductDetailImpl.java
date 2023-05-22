@@ -22,4 +22,9 @@ public class ProductDetailImpl implements ProductDetailService {
     public List<ProductDetail> findByIdProduct(long idProduct) {
         return productDetailDao.findByIdProduct(idProduct);
     }
+
+    @Override
+    public ProductDetail findByAlls(Long idProduct, Long idSize, Long idProperty) {
+        return productDetailDao.findByAlls(idProduct,idSize,idProperty);
+    }
 }

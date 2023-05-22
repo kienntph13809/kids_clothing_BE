@@ -8,4 +8,7 @@ public interface ProductDetailService {
     List<ProductDetail> findAll();
 
     List<ProductDetail> findByIdProduct(long idProduct);
+
+    ProductDetail findByAlls(Long idProduct, Long idSize, Long idProperty);
+
 }
