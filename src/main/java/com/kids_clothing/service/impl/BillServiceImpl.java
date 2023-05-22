@@ -110,6 +110,11 @@ public class BillServiceImpl extends BaseController implements BillService {
 
             } else if (billDto.getStatusshipping().equals("Đang xử lý")) {
                 customer = customerDao.findByIdaccount(getAuthUID());
+                if(billDto.getAddress().equals("Mua hàng tại quầy")){
+                    bill.setIdCustomer(customer.getId());
+                    bill.setStatus(EnumStatus.KHACH_DA_NHAN_HANG);
+                    return getBill(billDto, customer, bill);
+                }
                 bill.setIdCustomer(customer.getId());
                 bill.setCreateAt(new Date());
                 bill.setUpdateAts(new Date());
