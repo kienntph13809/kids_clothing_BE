@@ -147,4 +147,9 @@ public class AccountManagerController {
     public ResponseEntity<?> getUserList_admin() {
    return ResponseEntity.ok(new Res(accountService.findAllAdmin(), "thành công", true));
     }
+    @GetMapping(value = "/findAllROLE_Customer")
+    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> getUserList_customer() {
+        return ResponseEntity.ok(new Res(accountService.findAllCustomer(), "thành công", true));
+    }
 }

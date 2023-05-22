@@ -2,6 +2,7 @@ package com.kids_clothing.service.service;
 
 import com.kids_clothing.entity.Account;
 import com.kids_clothing.model.request.CustomerDto;
+import com.kids_clothing.model.request.CustomerRequestt;
 import com.kids_clothing.model.request.requestAccount;
 import com.kids_clothing.model.response.CustomerResponse;
 
@@ -24,8 +25,9 @@ public interface AccountService {
 
     List<CustomerResponse> findByPhone(CustomerDto accountDto);
 
-    List<Account> findByname(String name);
+    List<CustomerRequestt> findByname(String name);
 
     List<requestAccount> findAllAdmin();
+    List<CustomerRequestt> findAllCustomer();
 
 }

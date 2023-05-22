@@ -1,5 +1,6 @@
 package com.kids_clothing.service.impl;
 
+import com.kids_clothing.model.request.CustomerRequestt;
 import com.kids_clothing.model.request.requestAccount;
 import com.kids_clothing.repository.AccountDao;
 import com.kids_clothing.entity.Account;
@@ -59,12 +60,17 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> findByname(String name) {
+    public List<CustomerRequestt> findByname(String name) {
         return accountDao.findByNameLike(name);
     }
 
     @Override
     public List<requestAccount> findAllAdmin() {
         return accountDao.findAlllAdmin();
+    }
+
+    @Override
+    public List<CustomerRequestt> findAllCustomer() {
+        return accountDao.findAllCustomer();
     }
 }
