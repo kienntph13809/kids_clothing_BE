@@ -20,8 +20,7 @@ public interface ProductDao extends JpaRepository<Product, Long> {
 
     List<Product> findByCategorydetail(Categorydetail categorydetail);
 
-//    @Query("SELECT p FROM Product p WHERE p.name LIKE %:name%")
-//    List<Product> findByNameLike(@Param("name") String name);
+
 
     Product saveAndFlush(Product product);
 
