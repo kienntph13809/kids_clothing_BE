@@ -19,7 +19,6 @@ public class OrderDetailManagerController {
     OrderDetailDao orderDetailDao;
 
     @GetMapping("/{idbill}")
-    @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<Orderdetail>> getAllOrderdetail(@PathVariable("idbill") String idbill) {
         return ResponseEntity.ok(orderDetailDao.getListOrderDetail(idbill));
 

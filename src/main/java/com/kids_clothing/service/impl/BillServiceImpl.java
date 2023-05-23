@@ -625,6 +625,9 @@ public class BillServiceImpl extends BaseController implements BillService {
         if (status != "" && payment != null && dateto == "" && date == "") {
             return billDao.findbypaymentAndstatus(payment, status);
         }
+        if (status == "" && payment == null && dateto == "" && date == "") {
+            return billDao.findAll();
+        }
         return billDao.findbydateAndpaymentAndstatus(date, dateto, payment, status);
     }
 

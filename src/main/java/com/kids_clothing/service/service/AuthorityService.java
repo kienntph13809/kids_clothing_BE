@@ -5,7 +5,10 @@ import com.kids_clothing.entity.Authority;
 import java.util.List;
 
 public interface AuthorityService {
-    List<Authority> findAllByIsDeleteFalse();
+	List<Authority> findAllByIsDeleteFalse();
 
-    List<Authority> saveAll(List<Authority> authority);
+	List<Authority> saveAll(List<Authority> authority);
+
+
+
 }
