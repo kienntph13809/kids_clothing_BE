@@ -56,6 +56,7 @@ public class ProductManagerController {
         try {
             ObjectMapper json = new ObjectMapper();
             Product product = json.readValue(data, Product.class);
+            System.out.println(product);
             if (file != null) {
                 String filename = file.getOriginalFilename();
                 UUID uuid = UUID.randomUUID();
@@ -68,6 +69,7 @@ public class ProductManagerController {
             return ResponseEntity.ok(new Res(productService.findAllByIsDeleteFalse(), "Save success", true));
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
@@ -103,9 +105,10 @@ public class ProductManagerController {
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> findPriceProduc(@RequestParam(required = false) String minPrice,
                                              @RequestParam(required = false) String maxPrice,
-                                             @RequestParam(required = false) String name
+                                             @RequestParam(required = false) String name,
+                                             @RequestParam(required = false) String nameCate
     ) {
-        return ResponseEntity.ok(new Res(productService.findPriceProduct(minPrice, maxPrice, name), "Success", true));
+        return ResponseEntity.ok(new Res(productService.findPriceProduct(minPrice, maxPrice, name,nameCate),"Success", true));
     }
 
     @GetMapping("/findby_name")

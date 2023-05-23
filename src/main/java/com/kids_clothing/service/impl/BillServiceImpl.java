@@ -382,6 +382,8 @@ public class BillServiceImpl extends BaseController implements BillService {
         Bill bill = billDao.findById(idbill).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Không tìm thấy đơn hàng");
         });
+        System.out.println("haha"+ bill);
+        System.out.println("hahaho"+ idbill);
 
 
         if (bill.getStatus() == EnumStatus.CHUA_XAC_NHAN) {

@@ -30,6 +30,7 @@ public class ProductDetailController {
         List<ProductDetail> entity = productDetailService.findByIdProduct(idProduct);
         return ResponseEntity.ok(new Res(entity, "Success", true));
     }
+    
 
     @GetMapping("/findByAlls")
     public ResponseEntity<?> findByAlls(@RequestParam(required = false) Long idProduct, @RequestParam(required = false) Long idSize, @RequestParam(required = false) Long idProperty) {

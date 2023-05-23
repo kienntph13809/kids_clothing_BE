@@ -32,6 +32,6 @@ public interface ProductService {
 
     List<ProductRequest> fillallproduc();
 
-    List<ProductRequest> findPriceProduct(String minPrice, String maxPrice, String name);
+    List<ProductRequest> findPriceProduct(String minPrice, String maxPrice, String name , String nameCate);
 
 }

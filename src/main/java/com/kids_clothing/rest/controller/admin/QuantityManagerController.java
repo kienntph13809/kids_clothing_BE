@@ -130,6 +130,7 @@ public class QuantityManagerController {
         return ResponseEntity.ok(new Res(quantityService.createQty(createQuantity), "ok", true));
     }
 
+
     // xoa quantity
     @GetMapping("/delete/{idqty}")
     @PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")

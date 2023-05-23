@@ -1,6 +1,7 @@
 package com.kids_clothing.service.service;
 
 import com.kids_clothing.entity.Categorydetail;
+import com.kids_clothing.model.request.ProductRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,5 +25,7 @@ public interface CategoryDetailService {
 
     void deleteInBatch(List<Categorydetail> categoryDetail);
 
-    Categorydetail findByIds(Long id);
+
+    List<ProductRequest> findByDropdown(String name);
 }
+

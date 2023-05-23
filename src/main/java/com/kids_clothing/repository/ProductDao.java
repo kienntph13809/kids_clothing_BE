@@ -47,13 +47,16 @@ public interface ProductDao extends JpaRepository<Product, Long> {
             "GROUP BY productdetail.idproduct", nativeQuery = true)
     List<ProductRequest> findByNameLike(@Param("name") String name);
 
-    @Query(value = "SELECT product.name,product.image,product.price, productdetail.idproduct,categorydetail.name " +
-            "as categorydetail_name,categorydetail.id as categorydetail_id,\n" +
-            "category.name AS category_name,category.id as category_id,\n" +
-            "SUM(productdetail.quantity) as quantity FROM productdetail JOIN product \n" +
-            "on product.id = productdetail.idproduct JOIN categorydetail on product.idcategorydetail = categorydetail.id\n" +
-            "JOIN category ON categorydetail.idcategory = category.id\n" +
-            "GROUP BY productdetail.idproduct ", nativeQuery = true)
+    @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
+            "AS categorydetail_name, categorydetail.id " +
+            "AS categorydetail_id, category.name " +
+            "AS category_name, category.id " +
+            "AS category_id, SUM(productdetail.quantity) " +
+            "AS quantity, product.description,product.discount ,product.description_detail " +
+            " FROM productdetail JOIN product ON product.id = productdetail.idproduct " +
+            "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
+            "JOIN category ON categorydetail.idcategory = category.id " +
+            "GROUP BY productdetail.idproduct;" , nativeQuery = true)
     List<ProductRequest> fillallproduc();
 
     @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
@@ -64,9 +67,54 @@ public interface ProductDao extends JpaRepository<Product, Long> {
             "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
             "JOIN category ON categorydetail.idcategory = category.id " +
             "WHERE product.name LIKE %:name% " +
+            "AND categorydetail.name LIKE %:nameCate% "+
             "AND product.price BETWEEN :minPrice AND :maxPrice " +
             "GROUP BY productdetail.idproduct", nativeQuery = true)
-    List<ProductRequest> findPriceProduct(@Param("minPrice") String minPrice, @Param("maxPrice") String maxPrice, @Param("name") String name);
+    List<ProductRequest> findPriceProduct(@Param("minPrice") String minPrice, @Param("maxPrice") String maxPrice, @Param("name") String name ,@Param("nameCate") String nameCate);
+
+    @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
+            "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name AS category_name, category.id " +
+            "AS category_id, SUM(productdetail.quantity) AS quantity " +
+            "FROM productdetail " +
+            "JOIN product ON product.id = productdetail.idproduct " +
+            "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
+            "JOIN category ON categorydetail.idcategory = category.id " +
+            "WHERE categorydetail.name LIKE %:nameCate% "+
+            "GROUP BY productdetail.idproduct", nativeQuery = true)
+    List<ProductRequest> findByDropdown(@Param("nameCate")String nameCate);
+    @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
+            "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name AS category_name, category.id " +
+            "AS category_id, SUM(productdetail.quantity) AS quantity " +
+            "FROM productdetail " +
+            "JOIN product ON product.id = productdetail.idproduct " +
+            "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
+            "JOIN category ON categorydetail.idcategory = category.id " +
+            "WHERE categorydetail.name LIKE %:nameCate% "+
+            "AND product.price BETWEEN :minPrice AND :maxPrice"+
+            "GROUP BY productdetail.idproduct", nativeQuery = true)
+    List<ProductRequest> findByDropdownAndPrice(@Param("nameCate")String nameCate , @Param("minPrice")String minPrice , @Param("maxPrice")String max);
+    @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
+            "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name AS category_name, category.id " +
+            "AS category_id, SUM(productdetail.quantity) AS quantity " +
+            "FROM productdetail " +
+            "JOIN product ON product.id = productdetail.idproduct " +
+            "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
+            "JOIN category ON categorydetail.idcategory = category.id " +
+            "WHERE categorydetail.name LIKE %:nameCate% "+
+            "AND product.name LIKE %:name% "+
+            "GROUP BY productdetail.idproduct", nativeQuery = true)
+    List<ProductRequest> findByDropdownAndName(@Param("nameCate")String nameCate,@Param("name")String name);
+    @Query(value = "SELECT product.name, product.image, product.price, productdetail.idproduct, categorydetail.name " +
+            "AS categorydetail_name, categorydetail.id AS categorydetail_id, category.name AS category_name, category.id " +
+            "AS category_id, SUM(productdetail.quantity) AS quantity " +
+            "FROM productdetail " +
+            "JOIN product ON product.id = productdetail.idproduct " +
+            "JOIN categorydetail ON product.idcategorydetail = categorydetail.id " +
+            "JOIN category ON categorydetail.idcategory = category.id " +
+            "WHERE categorydetail.name LIKE %:nameCate% "+
+            "AND product.price BETWEEN :maxPrice"+
+            "GROUP BY productdetail.idproduct", nativeQuery = true)
+    List<ProductRequest> findByDropdownAndMaxprice(@Param("nameCate")String nameCate,@Param("maxPrice")String maxPrice);
 
 
 }
