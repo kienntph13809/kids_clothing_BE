@@ -134,7 +134,9 @@ public class QuantityManagerController {
 	@GetMapping("/delete/{idqty}")
 	@PreAuthorize("hasRole('ROLE_STAFF') or hasRole('ROLE_ADMIN')")
 	public ResponseEntity<Res> deleteQty(@PathVariable("idqty") Long idqty) {
+
 		return ResponseEntity.ok(new Res(quantityService.deleteQty(idqty), "ok", true));
+
 	}
 
 }

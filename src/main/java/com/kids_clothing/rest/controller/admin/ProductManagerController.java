@@ -56,6 +56,7 @@ public class ProductManagerController {
         try {
             ObjectMapper json = new ObjectMapper();
             Product product = json.readValue(data, Product.class);
+            System.out.println(product);
             if (file != null) {
                 String filename = file.getOriginalFilename();
                 UUID uuid = UUID.randomUUID();
@@ -68,6 +69,7 @@ public class ProductManagerController {
             return ResponseEntity.ok(new Res(productService.findAllByIsDeleteFalse(), "Save success", true));
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
             return ResponseEntity.ok(new Res("Save failed", false));
         }
     }
